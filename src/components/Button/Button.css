@@ -1,0 +1,25 @@
+.button {
+  width: 445px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: var(--color-primary);
+  color: var(--color-white);
+
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.button:hover {
+  opacity: 0.85;
+}
