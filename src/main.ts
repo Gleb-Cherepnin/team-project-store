@@ -1,5 +1,5 @@
 import { createApp } from './app/App';
-import './styles/global.css';
+import './styles/global.scss';
 
 import '@fontsource/jost/400.css';
 import '@fontsource/jost/500.css';

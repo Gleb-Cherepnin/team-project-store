@@ -13,16 +13,16 @@
   font-size: 16px;
   font-weight: 400;
   color: var(--color-text);
-}
 
-.input::placeholder {
-  color: var(--color-secondary);
-}
+  &::placeholder {
+    color: var(--color-secondary);
+  }
 
-.input:focus {
-  border-color: var(--color-primary);
-}
+  &:focus {
+    border-color: var(--color-primary);
+  }
 
-.input--error {
-  border-color: var(--color-error);
+  &--error {
+    border-color: var(--color-error);
+  }
 }
