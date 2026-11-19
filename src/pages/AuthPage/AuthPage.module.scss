@@ -3,14 +3,16 @@
   display: flex;
   align-items: center;
   width: 1440px;
-  height: 1024px;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .auth-page__image {
   display: block;
   width: 845px;
-  height: 1024px;
+  height: 100%;
   object-fit: cover;
+  object-position: 50% 20%;
   flex-shrink: 0;
 }
 
@@ -28,8 +30,8 @@
   align-items: center;
   justify-content: center;
   width: 595px;
-  height: 1024px;
-  padding-left: 50px;
+  height: 100%;
+  padding-left: 80px;
 }
 
 .auth-form {
