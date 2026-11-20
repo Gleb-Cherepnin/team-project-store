@@ -4,7 +4,7 @@ import inputStyles from '../../components/Input/Input.module.scss';
 import { createInput } from '../../components/Input/Input';
 import { createButton } from '../../components/Button/Button';
 
-export function createAuthPage(onForgotPassword: () => void): HTMLElement {
+export function createAuthPage(onForgotPassword: () => void, onSuccess: () => void): HTMLElement {
   const page = document.createElement('main');
   page.className = styles['auth-page'];
 
@@ -294,8 +294,13 @@ export function createAuthPage(onForgotPassword: () => void): HTMLElement {
     const isPasswordInvalid = passwordInput.value.trim() === '';
 
     emailInput.classList.toggle(inputStyles['input--error'], isEmailInvalid);
-
     passwordInput.classList.toggle(inputStyles['input--error'], isPasswordInvalid);
+
+    if (isEmailInvalid || isPasswordInvalid) {
+      return;
+    }
+
+    onSuccess();
   });
 
   // Login input events
@@ -318,14 +323,22 @@ export function createAuthPage(onForgotPassword: () => void): HTMLElement {
     const isTermsInvalid = !termsCheckbox.checked;
 
     firstNameInput.classList.toggle(inputStyles['input--error'], isFirstNameInvalid);
-
     lastNameInput.classList.toggle(inputStyles['input--error'], isLastNameInvalid);
-
     registerEmailInput.classList.toggle(inputStyles['input--error'], isEmailInvalid);
-
     registerPasswordInput.classList.toggle(inputStyles['input--error'], isPasswordInvalid);
-
     termsCheckbox.classList.toggle(inputStyles['input--error'], isTermsInvalid);
+
+    if (
+      isFirstNameInvalid ||
+      isLastNameInvalid ||
+      isEmailInvalid ||
+      isPasswordInvalid ||
+      isTermsInvalid
+    ) {
+      return;
+    }
+
+    onSuccess();
   });
 
   // Registration input events

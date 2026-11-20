@@ -1,0 +1,59 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 57px;
+  height: 57px;
+  padding: 0;
+
+  border: none;
+  border-radius: 10px;
+  background-color: #0e0b13;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:disabled {
+    background-color: #f7f6f7;
+    cursor: default;
+  }
+}
+
+.arrow {
+  position: relative;
+
+  display: block;
+
+  width: 20px;
+  height: 1px;
+
+  background-color: #fff;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: 0;
+
+    width: 8px;
+    height: 8px;
+
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+
+    transform: rotate(45deg);
+  }
+
+  &--previous {
+    transform: rotate(180deg);
+  }
+}
+
+.button:disabled .arrow {
+  background-color: #a6a4a8;
+
+  &::after {
+    border-color: #a6a4a8;
+  }
+}
