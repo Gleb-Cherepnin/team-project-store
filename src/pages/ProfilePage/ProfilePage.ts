@@ -4,6 +4,7 @@ import headerStyles from '../../components/Header/Header.module.scss';
 import footerStyles from '../../components/Footer/Footer.module.scss';
 import styles from './ProfilePage.module.scss';
 import { createWishlist } from './Wishlist';
+import { createAddresses } from './Addresses';
 
 const paths = {
   user: 'M20 21v-2a7 7 0 0 0-14 0v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
@@ -80,14 +81,14 @@ export function createProfilePage(): HTMLElement {
   main.querySelector('form')!.addEventListener('submit', (event) => {
     event.preventDefault();
     editing = !editing;
-    main.querySelectorAll('input').forEach((input) => {
+    details.querySelectorAll('input').forEach((input) => {
       input.readOnly = !editing;
     });
     main.querySelector(`.${styles.edit} span`)!.textContent = editing
       ? 'Save Changes'
       : 'Edit Profile';
     status.textContent = editing ? '' : 'Changes applied for this visit.';
-    const inputs = main.querySelectorAll('input');
+    const inputs = details.querySelectorAll('input');
     main.querySelector(`.${styles.greeting} strong`)!.textContent =
       `${inputs[0]!.value} ${inputs[1]!.value}`;
     if (editing) inputs[0]!.focus();
@@ -118,19 +119,22 @@ export function createProfilePage(): HTMLElement {
   });
   const details = main.querySelector<HTMLElement>(`.${styles.details}`)!;
   const wishlist = createWishlist();
+  const addresses = createAddresses();
+  addresses.hidden = true;
   wishlist.hidden = true;
-  details.after(wishlist);
+  details.after(wishlist, addresses);
   main.querySelectorAll('nav button').forEach((button, index) =>
     button.addEventListener('click', () => {
-      if (index === 0 || index === 2) {
+      if (index === 0 || index === 2 || index === 3) {
         main.querySelectorAll('nav button').forEach((item) => item.removeAttribute('aria-current'));
         button.setAttribute('aria-current', 'page');
-        details.hidden = index === 2;
+        details.hidden = index !== 0;
         wishlist.hidden = index !== 2;
+        addresses.hidden = index !== 3;
         return;
       }
       if (details.hidden) {
-        wishlist.querySelector('[role="status"]')!.textContent =
+        (wishlist.hidden ? addresses : wishlist).querySelector('[role="status"]')!.textContent =
           `${button.textContent} is not available yet.`;
         return;
       }
