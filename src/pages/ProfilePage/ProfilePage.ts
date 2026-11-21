@@ -9,22 +9,21 @@ import { createSavedCards } from './tabs/SavedCards/SavedCards';
 import { createNotifications } from './tabs/Notifications/Notifications';
 import { createSettings } from './tabs/Settings/Settings';
 
-const paths = {
-  user: 'M20 21v-2a7 7 0 0 0-14 0v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
-  box: 'm12 2 9 5v10l-9 5-9-5V7l9-5Z M3 7l9 5 9-5 M12 12v10 M7 4.8l9 5v5',
-  heart:
-    'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
-  pin: 'M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0 1 18 0Z M15 10a3 3 0 1 0-6 0 3 3 0 0 0 6 0Z',
-  card: 'M5 3h14a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z M2 8h20 M2 12h20 M6 17h4',
-  bell: 'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9 M9 20a3 3 0 0 0 6 0',
-  settings:
-    'm9 3 1-2h4l1 2 3 2 2 0 2 4-1 2v3l1 2-2 4h-3l-2 2h-4l-2-2H6l-2-4 1-2v-3L4 9l2-4h2Z M16 12a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z',
-  edit: 'M12 3H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h13a3 3 0 0 0 3-3v-7 M16 3l5 5 M10 14l-1 5 5-1L22 10a3.5 3.5 0 0 0-5-5Z',
+const profileIcons = {
+  user: 'icon_profile.svg',
+  box: 'icon_orders.svg',
+  heart: 'icon_wishlist.svg',
+  pin: 'icon_address.svg',
+  card: 'icon_cards.svg',
+  bell: 'icon_notification.svg',
+  settings: 'icon_settings.svg',
 };
-function icon(name: keyof typeof paths): string {
-  return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]}"/></svg>`;
+function icon(name: keyof typeof profileIcons | 'edit'): string {
+  if (name !== 'edit') {
+    return `<span class="${styles.menuIcon}" style="--profile-icon: url('/images/profile/${profileIcons[name]}')" aria-hidden="true"></span>`;
+  }
+  return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h13a3 3 0 0 0 3-3v-7 M16 3l5 5 M10 14l-1 5 5-1L22 10a3.5 3.5 0 0 0-5-5Z"/></svg>';
 }
-
 export function createProfilePage(): HTMLElement {
   const page = document.createElement('div');
   page.className = styles.page;
@@ -49,7 +48,7 @@ export function createProfilePage(): HTMLElement {
       ['card', 'Saved Cards'],
       ['bell', 'Notifications'],
       ['settings', 'Settings'],
-    ] as [keyof typeof paths, string][]
+    ] as [keyof typeof profileIcons, string][]
   )
     .map(
       ([key, label], index) =>
