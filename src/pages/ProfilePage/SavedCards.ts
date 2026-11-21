@@ -3,6 +3,15 @@
 import { createCardModal, type CardPreview } from './CardModal';
 
 const CARDS_STORAGE_KEY = 'krist.cards.v1';
+const paymentImages = new Map([
+  ['mastercard', '/images/auth/mc.png'],
+  ['visa', '/images/auth/visa.png'],
+  ['visacard', '/images/auth/visa.png'],
+  ['googlepay', '/images/auth/gp.png'],
+  ['applepay', '/images/auth/ap.png'],
+  ['amex', '/images/auth/amex.png'],
+  ['americanexpress', '/images/auth/amex.png'],
+]);
 
 function isCardPreview(value: unknown): value is CardPreview {
   if (!value || typeof value !== 'object') return false;
@@ -69,19 +78,14 @@ export function createSavedCards(): HTMLElement {
     row.className = styles.row;
     const logo = document.createElement('div');
     logo.className = styles.logo;
-    const imagePath =
-      card.brand === 'mastercard'
-        ? '/images/cards/master-card.svg'
-        : card.brand === 'visa'
-          ? '/images/cards/visa.svg'
-          : undefined;
+    const imagePath = paymentImages.get(card.brand.toLowerCase().replace(/[\s_-]/g, ''));
     if (imagePath) {
       const image = document.createElement('img');
       image.src = imagePath;
       image.alt = '';
       logo.append(image);
     } else {
-      logo.textContent = 'CARD';
+      logo.textContent = 'Card';
     }
     const info = document.createElement('div');
     info.className = styles.info;

@@ -93,10 +93,19 @@ export function createCardModal(trigger: HTMLButtonElement, onSave: (card: CardP
         ? 'visa'
         : digits.length === 16 && (/^5[1-5]/.test(digits) || (prefix >= 2221 && prefix <= 2720))
           ? 'mastercard'
-          : 'other';
+          : /^3[47]/.test(digits) && digits.length === 15
+            ? 'amex'
+            : 'other';
     onSave({
       brand,
-      name: brand === 'visa' ? 'Visa Card' : brand === 'mastercard' ? 'Master Card' : 'Card',
+      name:
+        brand === 'visa'
+          ? 'Visa Card'
+          : brand === 'mastercard'
+            ? 'Master Card'
+            : brand === 'amex'
+              ? 'AMEX'
+              : 'Card',
       number: `XXXX XXXX XXXX ${digits.slice(-4)}`,
     });
     close();
