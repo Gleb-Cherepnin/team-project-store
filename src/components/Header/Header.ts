@@ -1,4 +1,5 @@
 import styles from './Header.module.scss';
+import { isAuthenticated, logout } from '../../services/auth';
 
 export function createHeader(): HTMLElement {
   const header = document.createElement('header');
@@ -163,6 +164,11 @@ export function createHeader(): HTMLElement {
     button.className = styles.header__icon;
     button.type = 'button';
     button.setAttribute('aria-label', icon.alt);
+    if (icon.name === 'wishlist') {
+      button.addEventListener('click', () => {
+        window.location.hash = isAuthenticated() ? 'profile' : 'login';
+      });
+    }
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
@@ -187,10 +193,14 @@ export function createHeader(): HTMLElement {
   const loginButton = document.createElement('button');
   loginButton.className = styles.header__login;
   loginButton.type = 'button';
-  loginButton.textContent = 'Login';
+  loginButton.textContent = isAuthenticated() ? 'Logout' : 'Login';
 
   loginButton.addEventListener('click', () => {
-    window.location.hash = '';
+    if (isAuthenticated()) {
+      logout();
+      loginButton.textContent = 'Login';
+    }
+    window.location.hash = 'login';
   });
 
   actions.append(loginButton);
