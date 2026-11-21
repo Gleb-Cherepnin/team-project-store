@@ -60,6 +60,10 @@
     &:hover::after {
       transform: scaleX(1);
     }
+
+    &--shop {
+      position: relative;
+    }
   }
 
   &__arrow {
@@ -133,6 +137,93 @@
 
     &:hover {
       opacity: 0.85;
+    }
+  }
+
+  /* Mega Menu */
+  &__megaMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 935px;
+    height: 435px;
+    padding: 40px;
+
+    background-color: #ffffff;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    grid-template-columns: 190px 205px 205px 1fr;
+  }
+
+  /* Show Mega Menu on hover */
+  &__link--shop:hover &__megaMenu {
+    display: grid;
+  }
+
+  /* Columns */
+  &__megaColumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Vertical separators */
+  &__megaColumn:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 0;
+    width: 1px;
+    height: 360px;
+    background-color: #edecee;
+  }
+
+  /* Groups */
+  &__megaGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__megaGroup + &__megaGroup {
+    margin-top: 30px;
+  }
+
+  /* Group titles */
+  &__megaTitle {
+    margin: 0 0 25px;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #131118;
+  }
+
+  /* Lists */
+  &__megaList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Links */
+  &__megaLink {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #131118;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #777777;
     }
   }
 }

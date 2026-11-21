@@ -20,15 +20,117 @@ export function createHeader(): HTMLElement {
     const link = document.createElement('a');
     link.className = styles.header__link;
     link.textContent = linkText;
-    link.href = '#';
+    link.href = linkText === 'Home' ? '#home' : '#';
 
     if (linkText === 'Shop') {
       link.classList.add(styles['header__link--shop']);
 
+      // Arrow
       const arrow = document.createElement('span');
       arrow.className = styles.header__arrow;
-
       link.append(arrow);
+
+      // Mega Menu
+      const megaMenu = document.createElement('div');
+      megaMenu.className = styles.header__megaMenu;
+
+      // Prevent navigation when clicking Shop
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+
+      const columns = [
+        [
+          {
+            title: 'Men',
+            items: ['T-Shirts', 'Casual Shirts', 'Formal Shirts', 'Jackets', 'Blazers & Coats'],
+          },
+          {
+            title: 'Indian & Festive Wear',
+            items: ['Kurtas & Kurta Sets', 'Sherwanis'],
+          },
+        ],
+        [
+          {
+            title: 'Women',
+            items: ['Kurtas & Suits', 'Sarees', 'Ethnic Wear', 'Lehenga Cholis', 'Jackets'],
+          },
+          {
+            title: 'Western Wear',
+            items: ['Dresses', 'Jumpsuits'],
+          },
+        ],
+        [
+          {
+            title: 'Footwear',
+            items: ['Flats', 'Casual Shoes', 'Heels', 'Boots', 'Sports Shoes & Floaters'],
+          },
+          {
+            title: 'Product Features',
+            items: ['360 Product Viewer', 'Product with Video'],
+          },
+        ],
+        [
+          {
+            title: 'Kids',
+            items: [
+              'T-Shirts',
+              'Shirts',
+              'Jeans',
+              'Trousers',
+              'Party Wear',
+              'Innerwear & Thermal',
+              'Track Pants',
+              'Value Pack',
+            ],
+          },
+        ],
+      ];
+
+      columns.forEach((column) => {
+        const columnElement = document.createElement('div');
+        columnElement.className = styles.header__megaColumn;
+
+        column.forEach((group) => {
+          const groupElement = document.createElement('div');
+          groupElement.className = styles.header__megaGroup;
+
+          const title = document.createElement('h3');
+          title.className = styles.header__megaTitle;
+          title.textContent = group.title;
+
+          const list = document.createElement('ul');
+          list.className = styles.header__megaList;
+
+          group.items.forEach((item) => {
+            const listItem = document.createElement('li');
+            listItem.className = styles.header__megaItem;
+
+            const itemLink = document.createElement('a');
+            itemLink.className = styles.header__megaLink;
+            itemLink.href = '#';
+            itemLink.textContent = item;
+
+            listItem.append(itemLink);
+            list.append(listItem);
+          });
+
+          groupElement.append(title, list);
+          columnElement.append(groupElement);
+        });
+
+        megaMenu.append(columnElement);
+      });
+
+      link.append(megaMenu);
+
+      megaMenu.addEventListener('mouseenter', () => {
+        megaMenu.style.display = 'grid';
+      });
+
+      megaMenu.addEventListener('mouseleave', () => {
+        megaMenu.style.display = '';
+      });
     }
 
     navigation.append(link);
@@ -74,7 +176,6 @@ export function createHeader(): HTMLElement {
     svg.setAttribute('stroke-linejoin', 'round');
 
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-
     path.setAttribute('d', icon.path);
 
     svg.append(path);
