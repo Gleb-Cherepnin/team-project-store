@@ -1,0 +1,114 @@
+﻿.wishlist {
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 30px;
+  row-gap: 29px;
+}
+.card {
+  min-width: 0;
+  h2 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 20px 0 4px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 4px;
+  }
+}
+.image {
+  position: relative;
+  aspect-ratio: 256 / 330;
+  background: #f8f8f9;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  button {
+    position: absolute;
+    border: 0;
+    background: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+}
+.remove {
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #ff5252;
+  display: grid;
+  place-items: center;
+}
+.move {
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 50px;
+  border-radius: 10px;
+  color: #131118;
+  font-size: 16px;
+}
+.card:first-child .image button,
+.card:hover .image button,
+.card:focus-within .image button {
+  opacity: 1;
+}
+.prices {
+  display: flex;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  del {
+    color: #96939f;
+  }
+}
+.status {
+  font-size: 14px;
+  line-height: 24px;
+  &:not(:empty) {
+    margin-top: 20px;
+  }
+}
+@media (hover: none) {
+  .image button {
+    opacity: 1;
+  }
+}
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .grid {
+    gap: 24px 16px;
+  }
+  .move {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    font-size: 14px;
+    height: 40px;
+  }
+  .remove {
+    top: 8px;
+    right: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .image button {
+    transition: none;
+  }
+}

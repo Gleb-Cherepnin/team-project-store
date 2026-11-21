@@ -3,6 +3,7 @@ import { createFooter } from '../../components/Footer/Footer';
 import headerStyles from '../../components/Header/Header.module.scss';
 import footerStyles from '../../components/Footer/Footer.module.scss';
 import styles from './ProfilePage.module.scss';
+import { createWishlist } from './Wishlist';
 
 const paths = {
   user: 'M20 21v-2a7 7 0 0 0-14 0v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
@@ -108,13 +109,31 @@ export function createProfilePage(): HTMLElement {
     }
     const reader = new FileReader();
     reader.onload = () =>
-      main.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
-        img.src = String(reader.result);
-      });
+      main
+        .querySelectorAll<HTMLImageElement>(`.${styles.avatar} img, .${styles.greeting} img`)
+        .forEach((img) => {
+          img.src = String(reader.result);
+        });
     reader.readAsDataURL(file);
   });
-  main.querySelectorAll('nav button:not([aria-current])').forEach((button) =>
+  const details = main.querySelector<HTMLElement>(`.${styles.details}`)!;
+  const wishlist = createWishlist();
+  wishlist.hidden = true;
+  details.after(wishlist);
+  main.querySelectorAll('nav button').forEach((button, index) =>
     button.addEventListener('click', () => {
+      if (index === 0 || index === 2) {
+        main.querySelectorAll('nav button').forEach((item) => item.removeAttribute('aria-current'));
+        button.setAttribute('aria-current', 'page');
+        details.hidden = index === 2;
+        wishlist.hidden = index !== 2;
+        return;
+      }
+      if (details.hidden) {
+        wishlist.querySelector('[role="status"]')!.textContent =
+          `${button.textContent} is not available yet.`;
+        return;
+      }
       status.textContent = `${button.textContent} is not available yet.`;
     }),
   );

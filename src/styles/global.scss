@@ -7,6 +7,10 @@
 }
 
 html,
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   width: 100%;
   min-width: 1440px;
