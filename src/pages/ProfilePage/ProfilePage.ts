@@ -3,10 +3,11 @@ import { createFooter } from '../../components/Footer/Footer';
 import headerStyles from '../../components/Header/Header.module.scss';
 import footerStyles from '../../components/Footer/Footer.module.scss';
 import styles from './ProfilePage.module.scss';
-import { createWishlist } from './Wishlist';
-import { createAddresses } from './Addresses';
-import { createSavedCards } from './SavedCards';
-import { createNotifications } from './Notifications';
+import { createWishlist } from './tabs/Wishlist/Wishlist';
+import { createAddresses } from './tabs/Addresses/Addresses';
+import { createSavedCards } from './tabs/SavedCards/SavedCards';
+import { createNotifications } from './tabs/Notifications/Notifications';
+import { createSettings } from './tabs/Settings/Settings';
 
 const paths = {
   user: 'M20 21v-2a7 7 0 0 0-14 0v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z',
@@ -126,14 +127,16 @@ export function createProfilePage(): HTMLElement {
   const addresses = createAddresses();
   const cards = createSavedCards();
   const notifications = createNotifications();
+  const settings = createSettings();
+  settings.hidden = true;
   notifications.hidden = true;
   cards.hidden = true;
   addresses.hidden = true;
   wishlist.hidden = true;
-  details.after(wishlist, addresses, cards, notifications);
+  details.after(wishlist, addresses, cards, notifications, settings);
   main.querySelectorAll('nav button').forEach((button, index) =>
     button.addEventListener('click', () => {
-      if (index === 0 || index === 2 || index === 3 || index === 4 || index === 5) {
+      if (index === 0 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6) {
         main.querySelectorAll('nav button').forEach((item) => item.removeAttribute('aria-current'));
         button.setAttribute('aria-current', 'page');
         details.hidden = index !== 0;
@@ -141,10 +144,11 @@ export function createProfilePage(): HTMLElement {
         addresses.hidden = index !== 3;
         cards.hidden = index !== 4;
         notifications.hidden = index !== 5;
+        settings.hidden = index !== 6;
         return;
       }
       if (details.hidden) {
-        [wishlist, addresses, cards, notifications]
+        [wishlist, addresses, cards, notifications, settings]
           .find((panel) => !panel.hidden)!
           .querySelector('[role="status"]')!.textContent =
           `${button.textContent} is not available yet.`;

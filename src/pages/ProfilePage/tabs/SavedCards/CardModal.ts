@@ -1,4 +1,4 @@
-﻿import styles from './Addresses.module.scss';
+﻿import styles from '../../shared/ProfileModal.module.scss';
 
 export interface CardPreview {
   name: string;

@@ -1,4 +1,5 @@
 ﻿import styles from './Addresses.module.scss';
+import modalStyles from '../../shared/ProfileModal.module.scss';
 
 const icons = {
   plus: 'M12 5v14M5 12h14',
@@ -88,24 +89,24 @@ export function createAddresses(): HTMLElement {
   status.setAttribute('role', 'status');
   status.textContent = storageNotice;
   const overlay = document.createElement('div');
-  overlay.className = styles.overlay;
+  overlay.className = modalStyles.overlay;
   overlay.hidden = true;
   const dialog = document.createElement('div');
   dialog.setAttribute('role', 'dialog');
   dialog.setAttribute('aria-modal', 'true');
   overlay.append(dialog);
-  dialog.className = styles.dialog;
+  dialog.className = modalStyles.dialog;
   dialog.setAttribute('aria-labelledby', 'address-dialog-title');
   dialog.innerHTML = `<form><h2 id="address-dialog-title">Add a new address</h2>
     <label>Name<input name="name" autocomplete="name" placeholder="Enter Name" required/></label>
     <label>Mobile Number<input name="phone" type="tel" autocomplete="tel" placeholder="Enter Mobile Number" required/></label>
     <label>Flat, House no., Building, Company, Apartment<input name="building" autocomplete="address-line1" required/></label>
     <label>Area, Colony, Street, Sector, Village<input name="area" autocomplete="address-line2"/></label>
-    <label>City<span class="${styles.select}"><select name="city" autocomplete="address-level2" required><option value="" disabled>Select City</option><option>Manchester</option><option>Richardson</option><option>Mesa</option></select></span></label>
+    <label>City<span class="${modalStyles.select}"><select name="city" autocomplete="address-level2" required><option value="" disabled>Select City</option><option>Manchester</option><option>Richardson</option><option>Mesa</option></select></span></label>
     <label>Pin Code<input name="pin" autocomplete="postal-code" placeholder="Enter Pin Code" required/></label>
-    <label>State<span class="${styles.select}"><select name="state" autocomplete="address-level1" required><option value="" disabled>Select State</option><option>Kentucky</option><option>California</option><option>New Jersey</option><option>Arizona</option><option>Texas</option></select></span></label>
-    <label class="${styles.defaultAddress}"><input type="checkbox" name="isDefault" checked/>Use as my default address</label>
-    <div class="${styles.dialogActions}"><button type="button">Cancel</button><button type="submit">Add New Address</button></div></form>`;
+    <label>State<span class="${modalStyles.select}"><select name="state" autocomplete="address-level1" required><option value="" disabled>Select State</option><option>Kentucky</option><option>California</option><option>New Jersey</option><option>Arizona</option><option>Texas</option></select></span></label>
+    <label class="${modalStyles.defaultAddress}"><input type="checkbox" name="isDefault" checked/>Use as my default address</label>
+    <div class="${modalStyles.dialogActions}"><button type="button">Cancel</button><button type="submit">Add New Address</button></div></form>`;
   let editing: Address | undefined;
   const form = dialog.querySelector('form')!;
   let returnFocus: HTMLElement | null = null;
