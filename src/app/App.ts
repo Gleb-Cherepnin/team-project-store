@@ -2,6 +2,7 @@ import { createAuthPage } from '../pages/AuthPage/AuthPage';
 import { createForgotPasswordPage } from '../pages/ForgotPassword/ForgotPassword';
 import { createHomePage } from '../pages/HomePage/HomePage';
 import { createShopPage } from '../pages/ShopPage/ShopPage';
+import { createDescriptionsPage } from '../pages/DescriptionsPage/DescriptionsPage';
 
 export function createApp(): HTMLElement {
   const app = document.createElement('div');
@@ -23,6 +24,10 @@ export function createApp(): HTMLElement {
     app.replaceChildren(createShopPage(category));
   }
 
+  function showDescriptionsPage(): void {
+    app.replaceChildren(createDescriptionsPage());
+  }
+
   function navigateToHomePage(): void {
     window.location.hash = 'home';
   }
@@ -35,6 +40,8 @@ export function createApp(): HTMLElement {
     } else if (hash.startsWith('#shop/')) {
       const category = decodeURIComponent(hash.replace('#shop/', ''));
       showShopPage(category);
+    } else if (hash === '#descriptions') {
+      showDescriptionsPage();
     } else {
       showLoginPage();
     }

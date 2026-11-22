@@ -1568,6 +1568,8 @@ const productsByCategory: Record<string, Product[]> = {
   'winter wear': winterWear,
 };
 
+export const allProducts: Product[] = Object.values(productsByCategory).flat();
+
 function formatCategory(category: string): string {
   return category
     .split('-')
