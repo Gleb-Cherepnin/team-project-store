@@ -1,15 +1,18 @@
+
 import { createAuthPage } from '../pages/AuthPage/AuthPage';
 import { createForgotPasswordPage } from '../pages/ForgotPassword/ForgotPassword';
 import { createHomePage } from '../pages/HomePage/HomePage';
+import { createProfilePage } from '../pages/ProfilePage/ProfilePage';
 import { createShopPage } from '../pages/ShopPage/ShopPage';
 import { createDescriptionsPage } from '../pages/DescriptionsPage/DescriptionsPage';
+import { isAuthenticated, login } from '../services/auth';
 
 export function createApp(): HTMLElement {
   const app = document.createElement('div');
   app.className = 'app';
 
   function showLoginPage(): void {
-    app.replaceChildren(createAuthPage(showForgotPasswordPage, navigateToHomePage));
+    app.replaceChildren(createAuthPage(showForgotPasswordPage, completeLogin));
   }
 
   function showForgotPasswordPage(): void {
@@ -32,6 +35,12 @@ export function createApp(): HTMLElement {
     window.location.hash = 'home';
   }
 
+  function completeLogin(): void {
+    login();
+    window.location.hash = 'profile';
+    handlePageRoute();
+  }
+
   function handlePageRoute(): void {
     const hash = window.location.hash;
 
@@ -42,12 +51,21 @@ export function createApp(): HTMLElement {
       showShopPage(category);
     } else if (hash === '#descriptions') {
       showDescriptionsPage();
+    } else if (hash === '#profile') {
+      if (isAuthenticated()) {
+        app.replaceChildren(createProfilePage());
+      } else {
+        window.location.replace('#login');
+      }
+    } else if (isAuthenticated()) {
+      window.location.replace('#profile');
     } else {
       showLoginPage();
     }
   }
 
   window.addEventListener('hashchange', handlePageRoute);
+  window.addEventListener('storage', handlePageRoute);
 
   handlePageRoute();
 
