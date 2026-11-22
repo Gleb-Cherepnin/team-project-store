@@ -1,0 +1,50 @@
+.store-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 260px);
+  justify-content: center;
+  gap: 50px;
+
+  margin-top: 90px;
+  margin-bottom: 90px;
+}
+
+.store-benefits__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.store-benefits__icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  object-fit: contain;
+}
+
+.store-benefits__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.store-benefits__title {
+  margin: 0;
+
+  color: #131118;
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.store-benefits__description {
+  margin: 0;
+
+  color: #131118;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}

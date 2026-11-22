@@ -59,6 +59,16 @@ export function createProductCard(product: Product): HTMLElement {
   addToCartButton.type = 'button';
   addToCartButton.textContent = 'Add to Cart';
 
+  addToCartButton.addEventListener('click', () => {
+    sessionStorage.setItem('selectedProductImage', product.image);
+    sessionStorage.setItem('selectedProductBrand', product.brand);
+    sessionStorage.setItem('selectedProductName', product.name);
+    sessionStorage.setItem('selectedProductPrice', product.price);
+    sessionStorage.setItem('selectedProductOldPrice', product.oldPrice);
+
+    window.location.hash = 'descriptions';
+  });
+
   // Icons
   const icons = document.createElement('div');
   icons.className = styles['product-card__icons'];

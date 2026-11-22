@@ -1,7 +1,10 @@
+
 import { createAuthPage } from '../pages/AuthPage/AuthPage';
 import { createForgotPasswordPage } from '../pages/ForgotPassword/ForgotPassword';
 import { createHomePage } from '../pages/HomePage/HomePage';
 import { createProfilePage } from '../pages/ProfilePage/ProfilePage';
+import { createShopPage } from '../pages/ShopPage/ShopPage';
+import { createDescriptionsPage } from '../pages/DescriptionsPage/DescriptionsPage';
 import { isAuthenticated, login } from '../services/auth';
 
 export function createApp(): HTMLElement {
@@ -20,26 +23,43 @@ export function createApp(): HTMLElement {
     app.replaceChildren(createHomePage());
   }
 
-  // HOME PAGE ROUTE — отдельный блок
+  function showShopPage(category: string): void {
+    app.replaceChildren(createShopPage(category));
+  }
+
+  function showDescriptionsPage(): void {
+    app.replaceChildren(createDescriptionsPage());
+  }
+
+  function navigateToHomePage(): void {
+    window.location.hash = 'home';
+  }
+
   function completeLogin(): void {
     login();
     window.location.hash = 'profile';
+    handlePageRoute();
   }
 
   function handlePageRoute(): void {
-    if (window.location.hash === '#home') {
+    const hash = window.location.hash;
+
+    if (hash === '#home') {
       showHomePage();
-    } else if (isAuthenticated()) {
-      if (window.location.hash !== '#profile') {
-        window.location.replace('#profile');
-        return;
-      }
-      app.replaceChildren(createProfilePage());
-    } else {
-      if (window.location.hash === '#profile') {
+    } else if (hash.startsWith('#shop/')) {
+      const category = decodeURIComponent(hash.replace('#shop/', ''));
+      showShopPage(category);
+    } else if (hash === '#descriptions') {
+      showDescriptionsPage();
+    } else if (hash === '#profile') {
+      if (isAuthenticated()) {
+        app.replaceChildren(createProfilePage());
+      } else {
         window.location.replace('#login');
-        return;
       }
+    } else if (isAuthenticated()) {
+      window.location.replace('#profile');
+    } else {
       showLoginPage();
     }
   }
@@ -48,7 +68,6 @@ export function createApp(): HTMLElement {
   window.addEventListener('storage', handlePageRoute);
 
   handlePageRoute();
-  // END HOME PAGE ROUTE
 
   return app;
 }

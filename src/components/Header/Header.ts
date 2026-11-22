@@ -37,7 +37,9 @@ export function createHeader(): HTMLElement {
 
       // Prevent navigation when clicking Shop
       link.addEventListener('click', (event) => {
-        event.preventDefault();
+        if (event.target === link || event.target === arrow) {
+          event.preventDefault();
+        }
       });
 
       const columns = [
@@ -48,13 +50,13 @@ export function createHeader(): HTMLElement {
           },
           {
             title: 'Indian & Festive Wear',
-            items: ['Kurtas & Kurta Sets', 'Sherwanis'],
+            items: ['Jeans', 'Sherwanis'],
           },
         ],
         [
           {
             title: 'Women',
-            items: ['Kurtas & Suits', 'Sarees', 'Ethnic Wear', 'Lehenga Cholis', 'Jackets'],
+            items: ['Jeans', 'Sarees', 'Ethnic Wear', 'Lehenga Cholis', 'Jackets'],
           },
           {
             title: 'Western Wear',
@@ -109,7 +111,7 @@ export function createHeader(): HTMLElement {
 
             const itemLink = document.createElement('a');
             itemLink.className = styles.header__megaLink;
-            itemLink.href = '#';
+            itemLink.href = `#shop/${encodeURIComponent(item.toLowerCase())}`;
             itemLink.textContent = item;
 
             listItem.append(itemLink);
@@ -124,14 +126,6 @@ export function createHeader(): HTMLElement {
       });
 
       link.append(megaMenu);
-
-      megaMenu.addEventListener('mouseenter', () => {
-        megaMenu.style.display = 'grid';
-      });
-
-      megaMenu.addEventListener('mouseleave', () => {
-        megaMenu.style.display = '';
-      });
     }
 
     navigation.append(link);
