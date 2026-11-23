@@ -1,3 +1,4 @@
+import { addCartItem, getCart, setCartItemQuantity } from '../../services/cart';
 import { createHeader } from '../../components/Header/Header';
 import { createProductCard } from '../../components/ProductCard/ProductCard';
 import productCardStyles from '../../components/ProductCard/ProductCard.module.scss';
@@ -9,6 +10,7 @@ import { createFooter } from '../../components/Footer/Footer';
 export function createDescriptionsPage(): HTMLElement {
   const page = document.createElement('div');
   page.className = styles.descriptionsPage;
+  page.dataset.cartProduct = '';
 
   const header = createHeader();
 
@@ -130,6 +132,7 @@ export function createDescriptionsPage(): HTMLElement {
   const sizes = document.createElement('div');
   sizes.className = styles['descriptionsPage__sizes'];
 
+  let selectedSize = 'S';
   const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
 
   sizeOptions.forEach((size, index) => {
@@ -143,6 +146,7 @@ export function createDescriptionsPage(): HTMLElement {
     }
 
     button.addEventListener('click', () => {
+      selectedSize = size;
       sizes.querySelectorAll('button').forEach((sizeButton) => {
         sizeButton.classList.remove(styles['descriptionsPage__size-button--active']);
       });
@@ -180,7 +184,7 @@ export function createDescriptionsPage(): HTMLElement {
   let count = 1;
 
   decreaseButton.addEventListener('click', () => {
-    if (count > 1) {
+    if (count > 0) {
       count -= 1;
       quantityValue.textContent = String(count);
     }
@@ -198,6 +202,51 @@ export function createDescriptionsPage(): HTMLElement {
   addToCartButton.className = styles['descriptionsPage__cart-button'];
   addToCartButton.type = 'button';
   addToCartButton.textContent = 'Add to Cart';
+  addToCartButton.addEventListener('click', () => {
+    if (count === 0 || findCartItem() !== -1) return;
+    const value = Number((price.textContent || '').replace(/[^0-9.]/g, ''));
+    if (!name.textContent || !productImage.getAttribute('src') || !Number.isFinite(value)) return;
+    addCartItem({
+      name: name.textContent,
+      image: productImage.src,
+      price: value,
+      size: selectedSize,
+      quantity: count,
+      brand: brand.textContent || '',
+      oldPrice: oldPrice.textContent || '',
+    });
+    addToCartButton.textContent = 'Added to Cart';
+    addToCartButton.classList.add(styles['descriptionsPage__cart-button--added']);
+  });
+  addToCartButton.setAttribute('aria-live', 'polite');
+  function findCartItem(): number {
+    return getCart().findIndex(
+      (item) =>
+        item.name === name.textContent &&
+        item.image === productImage.src &&
+        item.size === selectedSize,
+    );
+  }
+  function updateCartButton(): void {
+    const added = findCartItem() !== -1;
+    addToCartButton.textContent = added ? 'Added to Cart' : 'Add to Cart';
+    addToCartButton.classList.toggle(styles['descriptionsPage__cart-button--added'], added);
+  }
+  function syncQuantity(): void {
+    const item = getCart()[findCartItem()];
+    count = item?.quantity ?? 0;
+    quantityValue.textContent = String(count);
+    updateCartButton();
+  }
+  sizes.addEventListener('click', syncQuantity);
+  quantity.addEventListener('click', () => {
+    const index = findCartItem();
+    if (index !== -1) setCartItemQuantity(index, count);
+    updateCartButton();
+  });
+  page.addEventListener('cartchange', syncQuantity);
+  if (findCartItem() !== -1) syncQuantity();
+  else updateCartButton();
 
   // Wishlist button
   const wishlistButton = document.createElement('button');

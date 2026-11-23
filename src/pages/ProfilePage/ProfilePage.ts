@@ -1,4 +1,5 @@
-﻿import { createHeader } from '../../components/Header/Header';
+import { createOrders } from './tabs/Orders/Orders';
+import { createHeader } from '../../components/Header/Header';
 import { createFooter } from '../../components/Footer/Footer';
 import headerStyles from '../../components/Header/Header.module.scss';
 import footerStyles from '../../components/Footer/Footer.module.scss';
@@ -24,7 +25,7 @@ function icon(name: keyof typeof profileIcons | 'edit'): string {
   }
   return '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h13a3 3 0 0 0 3-3v-7 M16 3l5 5 M10 14l-1 5 5-1L22 10a3.5 3.5 0 0 0-5-5Z"/></svg>';
 }
-export function createProfilePage(): HTMLElement {
+export function createProfilePage(showOrders = false): HTMLElement {
   const page = document.createElement('div');
   page.className = styles.page;
   const header = createHeader();
@@ -122,6 +123,8 @@ export function createProfilePage(): HTMLElement {
     reader.readAsDataURL(file);
   });
   const details = main.querySelector<HTMLElement>(`.${styles.details}`)!;
+  const orders = createOrders();
+  orders.hidden = true;
   const wishlist = createWishlist();
   const addresses = createAddresses();
   const cards = createSavedCards();
@@ -132,13 +135,22 @@ export function createProfilePage(): HTMLElement {
   cards.hidden = true;
   addresses.hidden = true;
   wishlist.hidden = true;
-  details.after(wishlist, addresses, cards, notifications, settings);
+  details.after(orders, wishlist, addresses, cards, notifications, settings);
   main.querySelectorAll('nav button').forEach((button, index) =>
     button.addEventListener('click', () => {
-      if (index === 0 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6) {
+      if (
+        index === 0 ||
+        index === 1 ||
+        index === 2 ||
+        index === 3 ||
+        index === 4 ||
+        index === 5 ||
+        index === 6
+      ) {
         main.querySelectorAll('nav button').forEach((item) => item.removeAttribute('aria-current'));
         button.setAttribute('aria-current', 'page');
         details.hidden = index !== 0;
+        orders.hidden = index !== 1;
         wishlist.hidden = index !== 2;
         addresses.hidden = index !== 3;
         cards.hidden = index !== 4;
@@ -156,6 +168,7 @@ export function createProfilePage(): HTMLElement {
       status.textContent = `${button.textContent} is not available yet.`;
     }),
   );
+  if (showOrders) main.querySelectorAll<HTMLButtonElement>('nav button')[1]!.click();
   page.append(header, main, upload, footer);
   return page;
 }

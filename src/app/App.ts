@@ -1,3 +1,5 @@
+import { createCheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
+import { createCartPage } from '../pages/CartPage/CartPage';
 
 import { createAuthPage } from '../pages/AuthPage/AuthPage';
 import { createForgotPasswordPage } from '../pages/ForgotPassword/ForgotPassword';
@@ -31,10 +33,6 @@ export function createApp(): HTMLElement {
     app.replaceChildren(createDescriptionsPage());
   }
 
-  function navigateToHomePage(): void {
-    window.location.hash = 'home';
-  }
-
   function completeLogin(): void {
     login();
     window.location.hash = 'profile';
@@ -49,6 +47,14 @@ export function createApp(): HTMLElement {
     } else if (hash.startsWith('#shop/')) {
       const category = decodeURIComponent(hash.replace('#shop/', ''));
       showShopPage(category);
+    } else if (hash === '#shipping' || hash === '#payment') {
+      app.replaceChildren(createCheckoutPage(hash === '#payment'));
+    } else if (hash === '#review') {
+      app.replaceChildren(createCheckoutPage(true, true));
+    } else if (hash === '#orders') {
+      app.replaceChildren(createProfilePage(true));
+    } else if (hash === '#cart') {
+      app.replaceChildren(createCartPage());
     } else if (hash === '#descriptions') {
       showDescriptionsPage();
     } else if (hash === '#profile') {
