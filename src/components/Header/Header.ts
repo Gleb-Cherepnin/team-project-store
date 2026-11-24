@@ -1,3 +1,4 @@
+import { createMiniCart } from '../MiniCart/MiniCart';
 import styles from './Header.module.scss';
 import { isAuthenticated, logout } from '../../services/auth';
 
@@ -180,7 +181,7 @@ export function createHeader(): HTMLElement {
 
     svg.append(path);
     button.append(svg);
-    actions.append(button);
+    actions.append(icon.name === 'cart' ? createMiniCart(button) : button);
   });
 
   // Login
