@@ -1,0 +1,48 @@
+.page {
+  font-family: var(--font-family);
+  color: #131118;
+  background: #fff;
+}
+
+.main {
+  max-width: 1140px;
+  min-height: 445px;
+  margin: 48px auto 100px;
+  padding: 0 24px;
+  line-height: 1.6;
+
+  h1 {
+    font-size: 40px;
+    font-weight: 500;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.member {
+  padding: 24px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+
+  h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  a {
+    color: inherit;
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+}

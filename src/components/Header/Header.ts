@@ -16,13 +16,19 @@ export function createHeader(): HTMLElement {
   const navigation = document.createElement('nav');
   navigation.className = styles.header__navigation;
 
-  const links = ['Home', 'Shop', 'Our Story', 'Blog', 'Contact Us'];
+  const links = ['Home', 'Shop', 'About us', 'Contact Us'];
 
   links.forEach((linkText) => {
     const link = document.createElement('a');
     link.className = styles.header__link;
     link.textContent = linkText;
-    link.href = linkText === 'Home' ? '#home' : '#';
+    const routes: Record<string, string> = {
+      Home: '#home',
+      Shop: '#shop/all',
+      'About us': '#about',
+      'Contact Us': '#contacts',
+    };
+    link.href = routes[linkText] || '#';
 
     if (linkText === 'Shop') {
       link.classList.add(styles['header__link--shop']);
@@ -35,13 +41,6 @@ export function createHeader(): HTMLElement {
       // Mega Menu
       const megaMenu = document.createElement('div');
       megaMenu.className = styles.header__megaMenu;
-
-      // Prevent navigation when clicking Shop
-      link.addEventListener('click', (event) => {
-        if (event.target === link || event.target === arrow) {
-          event.preventDefault();
-        }
-      });
 
       const columns = [
         [

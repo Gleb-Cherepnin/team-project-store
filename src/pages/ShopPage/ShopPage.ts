@@ -1794,7 +1794,9 @@ export function createShopPage(category: string): HTMLElement {
   const priceTrack = document.createElement('div');
   priceTrack.className = styles.shopPage__priceTrack;
 
-  const currentProducts = productsByCategory[selectedCategory] || [];
+  const currentProducts = [
+    ...(selectedCategory === 'all' ? allProducts : productsByCategory[selectedCategory] || []),
+  ];
 
   const prices = currentProducts.map((product) => Number(product.price.replace('$', '')));
 
