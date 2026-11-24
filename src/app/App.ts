@@ -1,5 +1,7 @@
 import { createCheckoutPage } from '../pages/CheckoutPage/CheckoutPage';
 import { createCartPage } from '../pages/CartPage/CartPage';
+import { createAboutPage } from '../pages/AboutPage/AboutPage';
+import { createContactsPage } from '../pages/ContactsPage/ContactsPage';
 
 import { createAuthPage } from '../pages/AuthPage/AuthPage';
 import { createForgotPasswordPage } from '../pages/ForgotPassword/ForgotPassword';
@@ -42,7 +44,11 @@ export function createApp(): HTMLElement {
   function handlePageRoute(): void {
     const hash = window.location.hash;
 
-    if (hash === '#home') {
+    if (!hash || hash === '#' || hash === '#about') {
+      app.replaceChildren(createAboutPage());
+    } else if (hash === '#contacts') {
+      app.replaceChildren(createContactsPage());
+    } else if (hash === '#home') {
       showHomePage();
     } else if (hash.startsWith('#shop/')) {
       const category = decodeURIComponent(hash.replace('#shop/', ''));
