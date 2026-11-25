@@ -174,6 +174,8 @@ export function createHomePage(): HTMLElement {
   // Products data
   const products: Product[] = [
     {
+      id: 'products-1',
+      category: 't-shirts',
       image: '/images/products/product-1.png',
       brand: 'Roadstar',
       name: 'Printed Cotton T-Shirt',
@@ -181,6 +183,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$40.00',
     },
     {
+      id: 'home-2',
+      category: 'bags',
       image: '/images/products/product-2.png',
       brand: 'Allen Solly',
       name: 'Women Textured Handheld Bag',
@@ -188,6 +192,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$100.00',
     },
     {
+      id: 'home-3',
+      category: 't-shirts',
       image: '/images/products/product-3.png',
       brand: 'Louis Philippe Sport',
       name: 'Polo Collar T-Shirt',
@@ -195,6 +201,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$55.00',
     },
     {
+      id: 'home-4',
+      category: 'sports shoes & floaters',
       image: '/images/products/product-4.png',
       brand: 'Adidas',
       name: 'Men adi-dash Running Shoes',
@@ -202,6 +210,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$75.00',
     },
     {
+      id: 'home-5',
+      category: 'dresses',
       image: '/images/products/product-5.png',
       brand: 'Trendyol',
       name: 'Floral Embroidered Maxi Dress',
@@ -209,6 +219,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$45.00',
     },
     {
+      id: 'home-6',
+      category: 'dresses',
       image: '/images/products/product-6.png',
       brand: 'YK Disney',
       name: 'Girls Pink Moana Printed Dress',
@@ -216,6 +228,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$100.00',
     },
     {
+      id: 'home-7',
+      category: 'casual shirts',
       image: '/images/products/product-7.png',
       brand: 'US Polo',
       name: 'Tailored Cotton Casual Shirt',
@@ -223,6 +237,8 @@ export function createHomePage(): HTMLElement {
       oldPrice: '$50.00',
     },
     {
+      id: 'home-8',
+      category: 'flats',
       image: '/images/products/product-8.png',
       brand: 'Zyla',
       name: 'Women Sandals',

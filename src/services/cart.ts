@@ -1,4 +1,5 @@
 export interface CartItem {
+  id?: string;
   brand?: string;
   oldPrice?: string;
   name: string;
@@ -37,7 +38,11 @@ function save(items: CartItem[]): void {
 export function addCartItem(item: CartItem): void {
   const items = getCart();
   const existing = items.find(
-    (entry) => entry.name === item.name && entry.image === item.image && entry.size === item.size,
+    (entry) =>
+      entry.size === item.size &&
+      (entry.id && item.id
+        ? entry.id === item.id
+        : entry.name === item.name && entry.image === item.image),
   );
   if (existing) existing.quantity += item.quantity;
   else items.push({ ...item });

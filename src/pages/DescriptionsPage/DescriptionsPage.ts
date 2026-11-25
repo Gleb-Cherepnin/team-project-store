@@ -203,15 +203,16 @@ export function createDescriptionsPage(): HTMLElement {
   addToCartButton.type = 'button';
   addToCartButton.textContent = 'Add to Cart';
   addToCartButton.addEventListener('click', () => {
-    if (count === 0 || findCartItem() !== -1) return;
+    if (count === 0) return;
     const value = Number((price.textContent || '').replace(/[^0-9.]/g, ''));
     if (!name.textContent || !productImage.getAttribute('src') || !Number.isFinite(value)) return;
     addCartItem({
+      id: sessionStorage.getItem('selectedProductId') || undefined,
       name: name.textContent,
       image: productImage.src,
       price: value,
       size: selectedSize,
-      quantity: count,
+      quantity: findCartItem() === -1 ? count : 1,
       brand: brand.textContent || '',
       oldPrice: oldPrice.textContent || '',
     });

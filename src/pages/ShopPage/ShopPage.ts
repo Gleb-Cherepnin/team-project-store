@@ -40,6 +40,8 @@ const otherCategories = ['Bags', 'Belts', 'Wallets', 'Watches', 'Accessories', '
 
 const products: Product[] = [
   {
+    id: 'products-1',
+    category: 't-shirts',
     image: '/images/products/product-1.png',
     brand: 'Roadstar',
     name: 'Printed Cotton T-Shirt',
@@ -47,6 +49,8 @@ const products: Product[] = [
     oldPrice: '$40.00',
   },
   {
+    id: 'products-2',
+    category: 't-shirts',
     image: '/images/products/t2.png',
     brand: 'Zara',
     name: 'Classic White T-Shirt',
@@ -54,6 +58,8 @@ const products: Product[] = [
     oldPrice: '$40.00',
   },
   {
+    id: 'products-3',
+    category: 't-shirts',
     image: '/images/products/t3.png',
     brand: 'Zara',
     name: 'Cotton Regular Fit T-Shirt',
@@ -61,6 +67,8 @@ const products: Product[] = [
     oldPrice: '$30.00',
   },
   {
+    id: 'products-4',
+    category: 't-shirts',
     image: '/images/products/t4.png',
     brand: 'H&M',
     name: 'Oversized Basic T-Shirt',
@@ -68,6 +76,8 @@ const products: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'products-5',
+    category: 't-shirts',
     image: '/images/products/t5.png',
     brand: 'KFK',
     name: 'Printed Graphic T-Shirt',
@@ -75,6 +85,8 @@ const products: Product[] = [
     oldPrice: '$38.00',
   },
   {
+    id: 'products-6',
+    category: 't-shirts',
     image: '/images/products/t6.png',
     brand: 'Polo',
     name: 'Classic Cotton Polo T-Shirt',
@@ -82,6 +94,8 @@ const products: Product[] = [
     oldPrice: '$35.00',
   },
   {
+    id: 'products-7',
+    category: 't-shirts',
     image: '/images/products/t7.png',
     brand: 'Zara',
     name: 'Slim Fit Basic T-Shirt',
@@ -89,6 +103,8 @@ const products: Product[] = [
     oldPrice: '$42.00',
   },
   {
+    id: 'products-8',
+    category: 't-shirts',
     image: '/images/products/t8.png',
     brand: 'Zara',
     name: 'Soft Touch Cotton T-Shirt',
@@ -96,6 +112,8 @@ const products: Product[] = [
     oldPrice: '$34.00',
   },
   {
+    id: 'products-9',
+    category: 't-shirts',
     image: '/images/products/t9.png',
     brand: 'Zara',
     name: 'Oversized Crew Neck T-Shirt',
@@ -106,6 +124,8 @@ const products: Product[] = [
 
 const casualShirts: Product[] = [
   {
+    id: 'casualShirts-1',
+    category: 'casual shirts',
     image: '/images/products/ch1.png',
     brand: 'Zara',
     name: 'Casual Cotton Shirt',
@@ -113,6 +133,8 @@ const casualShirts: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'casualShirts-2',
+    category: 'casual shirts',
     image: '/images/products/ch2.png',
     brand: 'H&M',
     name: 'Relaxed Fit Shirt',
@@ -120,6 +142,8 @@ const casualShirts: Product[] = [
     oldPrice: '$38.00',
   },
   {
+    id: 'casualShirts-3',
+    category: 'casual shirts',
     image: '/images/products/ch3.png',
     brand: 'Roadstar',
     name: 'Checked Casual Shirt',
@@ -127,6 +151,8 @@ const casualShirts: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'casualShirts-4',
+    category: 'casual shirts',
     image: '/images/products/ch4.png',
     brand: 'Levi’s',
     name: 'Denim Casual Shirt',
@@ -134,6 +160,8 @@ const casualShirts: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'casualShirts-5',
+    category: 'casual shirts',
     image: '/images/products/ch5.png',
     brand: 'Zara',
     name: 'Linen Blend Shirt',
@@ -141,6 +169,8 @@ const casualShirts: Product[] = [
     oldPrice: '$42.00',
   },
   {
+    id: 'casualShirts-6',
+    category: 'casual shirts',
     image: '/images/products/ch6.png',
     brand: 'H&M',
     name: 'Striped Casual Shirt',
@@ -148,6 +178,8 @@ const casualShirts: Product[] = [
     oldPrice: '$40.00',
   },
   {
+    id: 'casualShirts-7',
+    category: 'casual shirts',
     image: '/images/products/ch7.png',
     brand: 'Roadstar',
     name: 'Regular Fit Shirt',
@@ -155,6 +187,8 @@ const casualShirts: Product[] = [
     oldPrice: '$48.00',
   },
   {
+    id: 'casualShirts-8',
+    category: 'casual shirts',
     image: '/images/products/ch8.png',
     brand: 'Zara',
     name: 'Oxford Casual Shirt',
@@ -162,6 +196,8 @@ const casualShirts: Product[] = [
     oldPrice: '$52.00',
   },
   {
+    id: 'casualShirts-9',
+    category: 'casual shirts',
     image: '/images/products/ch9.png',
     brand: 'H&M',
     name: 'Short Sleeve Shirt',
@@ -172,6 +208,8 @@ const casualShirts: Product[] = [
 
 const formalShirts: Product[] = [
   {
+    id: 'formalShirts-1',
+    category: 'formal shirts',
     image: '/images/products/ch11.png',
     brand: 'Zara',
     name: 'Slim Fit Formal Shirt',
@@ -179,6 +217,8 @@ const formalShirts: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'formalShirts-2',
+    category: 'formal shirts',
     image: '/images/products/ch10.png',
     brand: 'H&M',
     name: 'Classic White Shirt',
@@ -186,6 +226,8 @@ const formalShirts: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'formalShirts-3',
+    category: 'formal shirts',
     image: '/images/products/ch9.png',
     brand: 'Polo',
     name: 'Premium Office Shirt',
@@ -193,6 +235,8 @@ const formalShirts: Product[] = [
     oldPrice: '$75.00',
   },
   {
+    id: 'formalShirts-4',
+    category: 'formal shirts',
     image: '/images/products/ch8.png',
     brand: 'Zara',
     name: 'Regular Fit Dress Shirt',
@@ -200,6 +244,8 @@ const formalShirts: Product[] = [
     oldPrice: '$52.00',
   },
   {
+    id: 'formalShirts-5',
+    category: 'formal shirts',
     image: '/images/products/ch7.png',
     brand: 'H&M',
     name: 'Cotton Business Shirt',
@@ -207,6 +253,8 @@ const formalShirts: Product[] = [
     oldPrice: '$48.00',
   },
   {
+    id: 'formalShirts-6',
+    category: 'formal shirts',
     image: '/images/products/ch6.png',
     brand: 'Polo',
     name: 'Oxford Formal Shirt',
@@ -214,6 +262,8 @@ const formalShirts: Product[] = [
     oldPrice: '$65.00',
   },
   {
+    id: 'formalShirts-7',
+    category: 'formal shirts',
     image: '/images/products/ch5.png',
     brand: 'Zara',
     name: 'Classic Black Shirt',
@@ -221,6 +271,8 @@ const formalShirts: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'formalShirts-8',
+    category: 'formal shirts',
     image: '/images/products/ch4.png',
     brand: 'H&M',
     name: 'Slim Cotton Shirt',
@@ -228,6 +280,8 @@ const formalShirts: Product[] = [
     oldPrice: '$46.00',
   },
   {
+    id: 'formalShirts-9',
+    category: 'formal shirts',
     image: '/images/products/ch3.png',
     brand: 'Polo',
     name: 'Premium White Shirt',
@@ -238,6 +292,8 @@ const formalShirts: Product[] = [
 
 const jackets: Product[] = [
   {
+    id: 'jackets-1',
+    category: 'jackets',
     image: '/images/products/j1.png',
     brand: 'Zara',
     name: 'Classic Bomber Jacket',
@@ -245,6 +301,8 @@ const jackets: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'jackets-2',
+    category: 'jackets',
     image: '/images/products/j2.png',
     brand: 'H&M',
     name: 'Lightweight Jacket',
@@ -252,6 +310,8 @@ const jackets: Product[] = [
     oldPrice: '$85.00',
   },
   {
+    id: 'jackets-3',
+    category: 'jackets',
     image: '/images/products/j3.png',
     brand: 'Levi’s',
     name: 'Denim Jacket',
@@ -259,6 +319,8 @@ const jackets: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'jackets-4',
+    category: 'jackets',
     image: '/images/products/j4.png',
     brand: 'Roadstar',
     name: 'Casual Zip Jacket',
@@ -266,6 +328,8 @@ const jackets: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'jackets-5',
+    category: 'jackets',
     image: '/images/products/j5.png',
     brand: 'Zara',
     name: 'Oversized Jacket',
@@ -273,6 +337,8 @@ const jackets: Product[] = [
     oldPrice: '$110.00',
   },
   {
+    id: 'jackets-6',
+    category: 'jackets',
     image: '/images/products/j6.png',
     brand: 'H&M',
     name: 'Padded Winter Jacket',
@@ -280,6 +346,8 @@ const jackets: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'jackets-7',
+    category: 'jackets',
     image: '/images/products/j7.png',
     brand: 'Polo',
     name: 'Sport Jacket',
@@ -287,6 +355,8 @@ const jackets: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'jackets-8',
+    category: 'jackets',
     image: '/images/products/j8.png',
     brand: 'Levi’s',
     name: 'Classic Trucker Jacket',
@@ -294,6 +364,8 @@ const jackets: Product[] = [
     oldPrice: '$120.00',
   },
   {
+    id: 'jackets-9',
+    category: 'jackets',
     image: '/images/products/j9.png',
     brand: 'Zara',
     name: 'Faux Leather Jacket',
@@ -304,6 +376,8 @@ const jackets: Product[] = [
 
 const blazersCoats: Product[] = [
   {
+    id: 'blazersCoats-1',
+    category: 'blazers & coats',
     image: '/images/products/с1.png',
     brand: 'Zara',
     name: 'Classic Black Blazer',
@@ -311,6 +385,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'blazersCoats-2',
+    category: 'blazers & coats',
     image: '/images/products/с2.png',
     brand: 'H&M',
     name: 'Slim Fit Blazer',
@@ -318,6 +394,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'blazersCoats-3',
+    category: 'blazers & coats',
     image: '/images/products/с3.png',
     brand: 'Polo',
     name: 'Wool Blend Coat',
@@ -325,6 +403,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$210.00',
   },
   {
+    id: 'blazersCoats-4',
+    category: 'blazers & coats',
     image: '/images/products/с4.png',
     brand: 'Zara',
     name: 'Casual Beige Blazer',
@@ -332,6 +412,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$125.00',
   },
   {
+    id: 'blazersCoats-5',
+    category: 'blazers & coats',
     image: '/images/products/с5.png',
     brand: 'H&M',
     name: 'Long Wool Coat',
@@ -339,6 +421,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$175.00',
   },
   {
+    id: 'blazersCoats-6',
+    category: 'blazers & coats',
     image: '/images/products/с6.png',
     brand: 'Polo',
     name: 'Tailored Navy Blazer',
@@ -346,6 +430,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$165.00',
   },
   {
+    id: 'blazersCoats-7',
+    category: 'blazers & coats',
     image: '/images/products/с7.png',
     brand: 'Zara',
     name: 'Oversized Grey Blazer',
@@ -353,6 +439,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$140.00',
   },
   {
+    id: 'blazersCoats-8',
+    category: 'blazers & coats',
     image: '/images/products/с8.png',
     brand: 'H&M',
     name: 'Classic Trench Coat',
@@ -360,6 +448,8 @@ const blazersCoats: Product[] = [
     oldPrice: '$155.00',
   },
   {
+    id: 'blazersCoats-9',
+    category: 'blazers & coats',
     image: '/images/products/с9.png',
     brand: 'Polo',
     name: 'Premium Formal Blazer',
@@ -370,6 +460,8 @@ const blazersCoats: Product[] = [
 
 const jeans: Product[] = [
   {
+    id: 'jeans-1',
+    category: 'jeans',
     image: '/images/products/je1.png',
     brand: 'Levi’s',
     name: '501 Original Straight Jeans',
@@ -377,6 +469,8 @@ const jeans: Product[] = [
     oldPrice: '$110.00',
   },
   {
+    id: 'jeans-2',
+    category: 'jeans',
     image: '/images/products/je2.png',
     brand: 'Wrangler',
     name: 'Classic Regular Fit Jeans',
@@ -384,6 +478,8 @@ const jeans: Product[] = [
     oldPrice: '$99.00',
   },
   {
+    id: 'jeans-3',
+    category: 'jeans',
     image: '/images/products/je3.png',
     brand: 'Lee',
     name: 'Extreme Motion Slim Jeans',
@@ -391,6 +487,8 @@ const jeans: Product[] = [
     oldPrice: '$105.00',
   },
   {
+    id: 'jeans-4',
+    category: 'jeans',
     image: '/images/products/je4.png',
     brand: 'Calvin Klein',
     name: 'Slim Fit Denim Jeans',
@@ -398,6 +496,8 @@ const jeans: Product[] = [
     oldPrice: '$135.00',
   },
   {
+    id: 'jeans-5',
+    category: 'jeans',
     image: '/images/products/je5.png',
     brand: 'Tommy Hilfiger',
     name: 'Classic Blue Denim Jeans',
@@ -405,6 +505,8 @@ const jeans: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'jeans-6',
+    category: 'jeans',
     image: '/images/products/je6.png',
     brand: 'Levi’s',
     name: '511 Slim Fit Jeans',
@@ -412,6 +514,8 @@ const jeans: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'jeans-7',
+    category: 'jeans',
     image: '/images/products/je7.png',
     brand: 'Wrangler',
     name: 'Texas Stretch Regular Jeans',
@@ -419,6 +523,8 @@ const jeans: Product[] = [
     oldPrice: '$102.00',
   },
   {
+    id: 'jeans-8',
+    category: 'jeans',
     image: '/images/products/je8.png',
     brand: 'Lee',
     name: 'Straight Leg Denim Jeans',
@@ -426,6 +532,8 @@ const jeans: Product[] = [
     oldPrice: '$108.00',
   },
   {
+    id: 'jeans-9',
+    category: 'jeans',
     image: '/images/products/je9.png',
     brand: 'Calvin Klein',
     name: 'Tapered Fit Jeans',
@@ -436,6 +544,8 @@ const jeans: Product[] = [
 
 const sherwanis: Product[] = [
   {
+    id: 'sherwanis-1',
+    category: 'sherwanis',
     image: '/images/products/s1.jpg',
     brand: 'Manyavar',
     name: 'Classic Wedding Sherwani',
@@ -443,6 +553,8 @@ const sherwanis: Product[] = [
     oldPrice: '$250.00',
   },
   {
+    id: 'sherwanis-2',
+    category: 'sherwanis',
     image: '/images/products/s2.jpg',
     brand: 'Manyavar',
     name: 'Embroidered Sherwani',
@@ -450,6 +562,8 @@ const sherwanis: Product[] = [
     oldPrice: '$320.00',
   },
   {
+    id: 'sherwanis-3',
+    category: 'sherwanis',
     image: '/images/products/s3.jpg',
     brand: 'Fabindia',
     name: 'Traditional Ivory Sherwani',
@@ -457,6 +571,8 @@ const sherwanis: Product[] = [
     oldPrice: '$275.00',
   },
   {
+    id: 'sherwanis-4',
+    category: 'sherwanis',
     image: '/images/products/s4.jpg',
     brand: 'Manyavar',
     name: 'Royal Blue Sherwani',
@@ -464,6 +580,8 @@ const sherwanis: Product[] = [
     oldPrice: '$300.00',
   },
   {
+    id: 'sherwanis-5',
+    category: 'sherwanis',
     image: '/images/products/s5.jpg',
     brand: 'Manyavar',
     name: 'Silk Wedding Sherwani',
@@ -471,6 +589,8 @@ const sherwanis: Product[] = [
     oldPrice: '$350.00',
   },
   {
+    id: 'sherwanis-6',
+    category: 'sherwanis',
     image: '/images/products/s6.jpg',
     brand: 'Fabindia',
     name: 'Classic Cream Sherwani',
@@ -478,6 +598,8 @@ const sherwanis: Product[] = [
     oldPrice: '$265.00',
   },
   {
+    id: 'sherwanis-7',
+    category: 'sherwanis',
     image: '/images/products/s7.jpg',
     brand: 'Manyavar',
     name: 'Gold Embroidered Sherwani',
@@ -485,6 +607,8 @@ const sherwanis: Product[] = [
     oldPrice: '$370.00',
   },
   {
+    id: 'sherwanis-8',
+    category: 'sherwanis',
     image: '/images/products/s8.jpg',
     brand: 'Manyavar',
     name: 'Modern Fit Sherwani',
@@ -492,6 +616,8 @@ const sherwanis: Product[] = [
     oldPrice: '$290.00',
   },
   {
+    id: 'sherwanis-9',
+    category: 'sherwanis',
     image: '/images/products/s9.jpg',
     brand: 'Fabindia',
     name: 'Festive Sherwani Set',
@@ -502,6 +628,8 @@ const sherwanis: Product[] = [
 
 const sarees: Product[] = [
   {
+    id: 'sarees-1',
+    category: 'sarees',
     image: '/images/products/sa1.png',
     brand: 'Fabindia',
     name: 'Traditional Silk Saree',
@@ -509,6 +637,8 @@ const sarees: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'sarees-2',
+    category: 'sarees',
     image: '/images/products/sa2.png',
     brand: 'Manyavar',
     name: 'Red Wedding Saree',
@@ -516,6 +646,8 @@ const sarees: Product[] = [
     oldPrice: '$180.00',
   },
   {
+    id: 'sarees-3',
+    category: 'sarees',
     image: '/images/products/sa3.png',
     brand: 'Fabindia',
     name: 'Elegant Floral Saree',
@@ -523,6 +655,8 @@ const sarees: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'sarees-4',
+    category: 'sarees',
     image: '/images/products/sa4.png',
     brand: 'Suta',
     name: 'Cotton Printed Saree',
@@ -530,6 +664,8 @@ const sarees: Product[] = [
     oldPrice: '$105.00',
   },
   {
+    id: 'sarees-5',
+    category: 'sarees',
     image: '/images/products/sa5.png',
     brand: 'Manyavar',
     name: 'Golden Embroidered Saree',
@@ -537,6 +673,8 @@ const sarees: Product[] = [
     oldPrice: '$210.00',
   },
   {
+    id: 'sarees-6',
+    category: 'sarees',
     image: '/images/products/sa6.png',
     brand: 'Fabindia',
     name: 'Classic Blue Silk Saree',
@@ -544,6 +682,8 @@ const sarees: Product[] = [
     oldPrice: '$155.00',
   },
   {
+    id: 'sarees-7',
+    category: 'sarees',
     image: '/images/products/sa7.png',
     brand: 'Suta',
     name: 'Pastel Pink Saree',
@@ -551,6 +691,8 @@ const sarees: Product[] = [
     oldPrice: '$110.00',
   },
   {
+    id: 'sarees-8',
+    category: 'sarees',
     image: '/images/products/sa8.png',
     brand: 'Manyavar',
     name: 'Bridal Designer Saree',
@@ -558,6 +700,8 @@ const sarees: Product[] = [
     oldPrice: '$250.00',
   },
   {
+    id: 'sarees-9',
+    category: 'sarees',
     image: '/images/products/sa9.png',
     brand: 'Fabindia',
     name: 'Green Traditional Saree',
@@ -568,6 +712,8 @@ const sarees: Product[] = [
 
 const ethnicWear: Product[] = [
   {
+    id: 'ethnicWear-1',
+    category: 'ethnic wear',
     image: '/images/products/d1.png',
     brand: 'Fabindia',
     name: 'Printed Ethnic Kurta',
@@ -575,6 +721,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'ethnicWear-2',
+    category: 'ethnic wear',
     image: '/images/products/d2.png',
     brand: 'Biba',
     name: 'Floral Anarkali Suit',
@@ -582,6 +730,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'ethnicWear-3',
+    category: 'ethnic wear',
     image: '/images/products/d3.png',
     brand: 'Manyavar',
     name: 'Traditional Embroidered Set',
@@ -589,6 +739,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'ethnicWear-4',
+    category: 'ethnic wear',
     image: '/images/products/d4.png',
     brand: 'Fabindia',
     name: 'Cotton Ethnic Dress',
@@ -596,6 +748,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'ethnicWear-5',
+    category: 'ethnic wear',
     image: '/images/products/d5.png',
     brand: 'Biba',
     name: 'Printed Kurta Set',
@@ -603,6 +757,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$90.00',
   },
   {
+    id: 'ethnicWear-6',
+    category: 'ethnic wear',
     image: '/images/products/d6.png',
     brand: 'Aurelia',
     name: 'Elegant Ethnic Tunic',
@@ -610,6 +766,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$65.00',
   },
   {
+    id: 'ethnicWear-7',
+    category: 'ethnic wear',
     image: '/images/products/d7.png',
     brand: 'Fabindia',
     name: 'Traditional Cotton Suit',
@@ -617,6 +775,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$110.00',
   },
   {
+    id: 'ethnicWear-8',
+    category: 'ethnic wear',
     image: '/images/products/d8.png',
     brand: 'Biba',
     name: 'Festive Anarkali Dress',
@@ -624,6 +784,8 @@ const ethnicWear: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'ethnicWear-9',
+    category: 'ethnic wear',
     image: '/images/products/d9.png',
     brand: 'Manyavar',
     name: 'Designer Ethnic Set',
@@ -634,6 +796,8 @@ const ethnicWear: Product[] = [
 
 const lehengaCholis: Product[] = [
   {
+    id: 'lehengaCholis-1',
+    category: 'lehenga cholis',
     image: '/images/products/d9.png',
     brand: 'Manyavar',
     name: 'Red Bridal Lehenga',
@@ -641,6 +805,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$290.00',
   },
   {
+    id: 'lehengaCholis-2',
+    category: 'lehenga cholis',
     image: '/images/products/d8.png',
     brand: 'Biba',
     name: 'Pink Embroidered Lehenga',
@@ -648,6 +814,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$210.00',
   },
   {
+    id: 'lehengaCholis-3',
+    category: 'lehenga cholis',
     image: '/images/products/d7.png',
     brand: 'Fabindia',
     name: 'Traditional Blue Lehenga',
@@ -655,6 +823,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$190.00',
   },
   {
+    id: 'lehengaCholis-4',
+    category: 'lehenga cholis',
     image: '/images/products/d6.png',
     brand: 'Manyavar',
     name: 'Golden Wedding Lehenga',
@@ -662,6 +832,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$320.00',
   },
   {
+    id: 'lehengaCholis-5',
+    category: 'lehenga cholis',
     image: '/images/products/d5.png',
     brand: 'Biba',
     name: 'Pastel Floral Lehenga',
@@ -669,6 +841,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$220.00',
   },
   {
+    id: 'lehengaCholis-6',
+    category: 'lehenga cholis',
     image: '/images/products/d4.png',
     brand: 'Manyavar',
     name: 'Royal Purple Lehenga',
@@ -676,6 +850,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$270.00',
   },
   {
+    id: 'lehengaCholis-7',
+    category: 'lehenga cholis',
     image: '/images/products/d3.png',
     brand: 'Fabindia',
     name: 'Green Silk Lehenga',
@@ -683,6 +859,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$205.00',
   },
   {
+    id: 'lehengaCholis-8',
+    category: 'lehenga cholis',
     image: '/images/products/d2.png',
     brand: 'Biba',
     name: 'Peach Party Lehenga',
@@ -690,6 +868,8 @@ const lehengaCholis: Product[] = [
     oldPrice: '$195.00',
   },
   {
+    id: 'lehengaCholis-9',
+    category: 'lehenga cholis',
     image: '/images/products/d1.png',
     brand: 'Manyavar',
     name: 'Maroon Bridal Lehenga',
@@ -700,6 +880,8 @@ const lehengaCholis: Product[] = [
 
 const dresses: Product[] = [
   {
+    id: 'dresses-1',
+    category: 'dresses',
     image: '/images/products/d1.png',
     brand: 'Zara',
     name: 'Floral Summer Dress',
@@ -707,6 +889,8 @@ const dresses: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'dresses-2',
+    category: 'dresses',
     image: '/images/products/d3.png',
     brand: 'H&M',
     name: 'Classic Black Dress',
@@ -714,6 +898,8 @@ const dresses: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'dresses-3',
+    category: 'dresses',
     image: '/images/products/d5.png',
     brand: 'Mango',
     name: 'Elegant Midi Dress',
@@ -721,6 +907,8 @@ const dresses: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'dresses-4',
+    category: 'dresses',
     image: '/images/products/d7.png',
     brand: 'Zara',
     name: 'Satin Evening Dress',
@@ -728,6 +916,8 @@ const dresses: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'dresses-5',
+    category: 'dresses',
     image: '/images/products/d9.png',
     brand: 'H&M',
     name: 'Casual Cotton Dress',
@@ -735,6 +925,8 @@ const dresses: Product[] = [
     oldPrice: '$60.00',
   },
   {
+    id: 'dresses-6',
+    category: 'dresses',
     image: '/images/products/d8.png',
     brand: 'Mango',
     name: 'Pleated Maxi Dress',
@@ -742,6 +934,8 @@ const dresses: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'dresses-7',
+    category: 'dresses',
     image: '/images/products/d6.png',
     brand: 'Zara',
     name: 'Floral Midi Dress',
@@ -749,6 +943,8 @@ const dresses: Product[] = [
     oldPrice: '$90.00',
   },
   {
+    id: 'dresses-8',
+    category: 'dresses',
     image: '/images/products/d4.png',
     brand: 'H&M',
     name: 'Linen Summer Dress',
@@ -756,6 +952,8 @@ const dresses: Product[] = [
     oldPrice: '$75.00',
   },
   {
+    id: 'dresses-9',
+    category: 'dresses',
     image: '/images/products/d2.png',
     brand: 'Mango',
     name: 'Elegant Wrap Dress',
@@ -766,6 +964,8 @@ const dresses: Product[] = [
 
 const jumpsuits: Product[] = [
   {
+    id: 'jumpsuits-1',
+    category: 'jumpsuits',
     image: '/images/products/ju1.png',
     brand: 'Zara',
     name: 'Black Wide Leg Jumpsuit',
@@ -773,6 +973,8 @@ const jumpsuits: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'jumpsuits-2',
+    category: 'jumpsuits',
     image: '/images/products/ju2.png',
     brand: 'Mango',
     name: 'Elegant Belted Jumpsuit',
@@ -780,6 +982,8 @@ const jumpsuits: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'jumpsuits-3',
+    category: 'jumpsuits',
     image: '/images/products/ju3.png',
     brand: 'H&M',
     name: 'Casual Denim Jumpsuit',
@@ -790,6 +994,8 @@ const jumpsuits: Product[] = [
 
 const kidsShirts: Product[] = [
   {
+    id: 'kidsShirts-1',
+    category: 'shirts',
     image: '/images/products/ch1.png',
     brand: 'Zara',
     name: 'Casual Cotton Shirt',
@@ -797,6 +1003,8 @@ const kidsShirts: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'kidsShirts-2',
+    category: 'shirts',
     image: '/images/products/ch2.png',
     brand: 'H&M',
     name: 'Relaxed Fit Shirt',
@@ -804,6 +1012,8 @@ const kidsShirts: Product[] = [
     oldPrice: '$38.00',
   },
   {
+    id: 'kidsShirts-3',
+    category: 'shirts',
     image: '/images/products/ch3.png',
     brand: 'Roadstar',
     name: 'Checked Casual Shirt',
@@ -811,6 +1021,8 @@ const kidsShirts: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'kidsShirts-4',
+    category: 'shirts',
     image: '/images/products/ch4.png',
     brand: 'Levi’s',
     name: 'Denim Casual Shirt',
@@ -818,6 +1030,8 @@ const kidsShirts: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'kidsShirts-5',
+    category: 'shirts',
     image: '/images/products/ch5.png',
     brand: 'Zara',
     name: 'Linen Blend Shirt',
@@ -825,6 +1039,8 @@ const kidsShirts: Product[] = [
     oldPrice: '$42.00',
   },
   {
+    id: 'kidsShirts-6',
+    category: 'shirts',
     image: '/images/products/ch6.png',
     brand: 'H&M',
     name: 'Striped Casual Shirt',
@@ -835,6 +1051,8 @@ const kidsShirts: Product[] = [
 
 const kidsTrousers: Product[] = [
   {
+    id: 'kidsTrousers-1',
+    category: 'trousers',
     image: '/images/products/tr1.png',
     brand: 'H&M Kids',
     name: 'Classic Casual Trousers',
@@ -842,6 +1060,8 @@ const kidsTrousers: Product[] = [
     oldPrice: '$31.00',
   },
   {
+    id: 'kidsTrousers-2',
+    category: 'trousers',
     image: '/images/products/tr2.png',
     brand: 'Zara Kids',
     name: 'Slim Fit Chino Trousers',
@@ -849,6 +1069,8 @@ const kidsTrousers: Product[] = [
     oldPrice: '$37.00',
   },
   {
+    id: 'kidsTrousers-3',
+    category: 'trousers',
     image: '/images/products/tr3.png',
     brand: 'Gap Kids',
     name: 'Cotton Straight Trousers',
@@ -856,6 +1078,8 @@ const kidsTrousers: Product[] = [
     oldPrice: '$35.00',
   },
   {
+    id: 'kidsTrousers-4',
+    category: 'trousers',
     image: '/images/products/tr4.png',
     brand: 'Next Kids',
     name: 'Relaxed Fit Trousers',
@@ -863,6 +1087,8 @@ const kidsTrousers: Product[] = [
     oldPrice: '$34.00',
   },
   {
+    id: 'kidsTrousers-5',
+    category: 'trousers',
     image: '/images/products/tr5.png',
     brand: 'Mango Kids',
     name: 'Smart School Trousers',
@@ -870,6 +1096,8 @@ const kidsTrousers: Product[] = [
     oldPrice: '$39.00',
   },
   {
+    id: 'kidsTrousers-6',
+    category: 'trousers',
     image: '/images/products/tr6.png',
     brand: 'Nike Kids',
     name: 'Everyday Woven Trousers',
@@ -880,6 +1108,8 @@ const kidsTrousers: Product[] = [
 
 const kidsPartyWear: Product[] = [
   {
+    id: 'kidsPartyWear-1',
+    category: 'party wear',
     image: '/images/products/pv1.png',
     brand: 'Zara Kids',
     name: 'Elegant Party Dress',
@@ -887,6 +1117,8 @@ const kidsPartyWear: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'kidsPartyWear-2',
+    category: 'party wear',
     image: '/images/products/pv2.png',
     brand: 'Next Kids',
     name: 'Classic Party Suit',
@@ -894,6 +1126,8 @@ const kidsPartyWear: Product[] = [
     oldPrice: '$65.00',
   },
   {
+    id: 'kidsPartyWear-3',
+    category: 'party wear',
     image: '/images/products/pv3.png',
     brand: 'Mango Kids',
     name: 'Floral Celebration Dress',
@@ -904,6 +1138,8 @@ const kidsPartyWear: Product[] = [
 
 const kidsInnerwearThermal: Product[] = [
   {
+    id: 'kidsInnerwearThermal-1',
+    category: 'innerwear & thermal',
     image: '/images/products/ki1.png',
     brand: 'H&M Kids',
     name: 'Cotton Basic Underwear Set',
@@ -911,6 +1147,8 @@ const kidsInnerwearThermal: Product[] = [
     oldPrice: '$22.00',
   },
   {
+    id: 'kidsInnerwearThermal-2',
+    category: 'innerwear & thermal',
     image: '/images/products/ki2.png',
     brand: 'Next Kids',
     name: 'Soft Cotton Vest Set',
@@ -918,6 +1156,8 @@ const kidsInnerwearThermal: Product[] = [
     oldPrice: '$20.00',
   },
   {
+    id: 'kidsInnerwearThermal-3',
+    category: 'innerwear & thermal',
     image: '/images/products/ki3.png',
     brand: 'Uniqlo Kids',
     name: 'HEATTECH Thermal Top',
@@ -925,6 +1165,8 @@ const kidsInnerwearThermal: Product[] = [
     oldPrice: '$25.00',
   },
   {
+    id: 'kidsInnerwearThermal-4',
+    category: 'innerwear & thermal',
     image: '/images/products/ki4.png',
     brand: 'Gap Kids',
     name: 'Thermal Leggings',
@@ -932,6 +1174,8 @@ const kidsInnerwearThermal: Product[] = [
     oldPrice: '$24.00',
   },
   {
+    id: 'kidsInnerwearThermal-5',
+    category: 'innerwear & thermal',
     image: '/images/products/ki5.png',
     brand: 'Carter’s',
     name: 'Everyday Underwear Pack',
@@ -939,6 +1183,8 @@ const kidsInnerwearThermal: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'kidsInnerwearThermal-6',
+    category: 'innerwear & thermal',
     image: '/images/products/ki6.png',
     brand: 'Mothercare',
     name: 'Warm Thermal Set',
@@ -949,6 +1195,8 @@ const kidsInnerwearThermal: Product[] = [
 
 const kidsTrackPants: Product[] = [
   {
+    id: 'kidsTrackPants-1',
+    category: 'track pants',
     image: '/images/products/tp1.png',
     brand: 'Nike Kids',
     name: 'Sportswear Track Pants',
@@ -956,6 +1204,8 @@ const kidsTrackPants: Product[] = [
     oldPrice: '$35.00',
   },
   {
+    id: 'kidsTrackPants-2',
+    category: 'track pants',
     image: '/images/products/tp2.png',
     brand: 'Adidas Kids',
     name: 'Classic Three Stripe Pants',
@@ -963,6 +1213,8 @@ const kidsTrackPants: Product[] = [
     oldPrice: '$37.00',
   },
   {
+    id: 'kidsTrackPants-3',
+    category: 'track pants',
     image: '/images/products/tp3.png',
     brand: 'Puma Kids',
     name: 'Essential Jogger Pants',
@@ -970,6 +1222,8 @@ const kidsTrackPants: Product[] = [
     oldPrice: '$33.00',
   },
   {
+    id: 'kidsTrackPants-4',
+    category: 'track pants',
     image: '/images/products/tp4.png',
     brand: 'H&M Kids',
     name: 'Cotton Relaxed Track Pants',
@@ -977,6 +1231,8 @@ const kidsTrackPants: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'kidsTrackPants-5',
+    category: 'track pants',
     image: '/images/products/tp5.png',
     brand: 'Under Armour',
     name: 'Sport Training Pants',
@@ -984,6 +1240,8 @@ const kidsTrackPants: Product[] = [
     oldPrice: '$39.00',
   },
   {
+    id: 'kidsTrackPants-6',
+    category: 'track pants',
     image: '/images/products/tp6.png',
     brand: 'Reebok Kids',
     name: 'Classic Training Joggers',
@@ -994,6 +1252,8 @@ const kidsTrackPants: Product[] = [
 
 const kidsValuePack: Product[] = [
   {
+    id: 'kidsValuePack-1',
+    category: 'value pack',
     image: '/images/products/tp1.png',
     brand: 'H&M Kids',
     name: 'Basic T-Shirt 3 Pack',
@@ -1001,6 +1261,8 @@ const kidsValuePack: Product[] = [
     oldPrice: '$32.00',
   },
   {
+    id: 'kidsValuePack-2',
+    category: 'value pack',
     image: '/images/products/tr2.png',
     brand: 'Next Kids',
     name: 'Cotton Vest 3 Pack',
@@ -1008,6 +1270,8 @@ const kidsValuePack: Product[] = [
     oldPrice: '$26.00',
   },
   {
+    id: 'kidsValuePack-3',
+    category: 'value pack',
     image: '/images/products/ki3.png',
     brand: 'Carter’s',
     name: 'Everyday Bodysuit 5 Pack',
@@ -1015,6 +1279,8 @@ const kidsValuePack: Product[] = [
     oldPrice: '$38.00',
   },
   {
+    id: 'kidsValuePack-4',
+    category: 'value pack',
     image: '/images/products/pv1.png',
     brand: 'Gap Kids',
     name: 'Colorful Socks 5 Pack',
@@ -1022,6 +1288,8 @@ const kidsValuePack: Product[] = [
     oldPrice: '$20.00',
   },
   {
+    id: 'kidsValuePack-5',
+    category: 'value pack',
     image: '/images/products/ch5.png',
     brand: 'Zara Kids',
     name: 'Essential T-Shirt 2 Pack',
@@ -1029,6 +1297,8 @@ const kidsValuePack: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'kidsValuePack-6',
+    category: 'value pack',
     image: '/images/products/tr6.png',
     brand: 'Mothercare',
     name: 'Cotton Pyjama 2 Pack',
@@ -1039,6 +1309,8 @@ const kidsValuePack: Product[] = [
 
 const flats: Product[] = [
   {
+    id: 'flats-1',
+    category: 'flats',
     image: '/images/products/fl1.png',
     brand: 'Bata',
     name: 'Classic Ballet Flats',
@@ -1046,6 +1318,8 @@ const flats: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'flats-2',
+    category: 'flats',
     image: '/images/products/fl2.png',
     brand: 'H&M',
     name: 'Leather Pointed Flats',
@@ -1053,6 +1327,8 @@ const flats: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'flats-3',
+    category: 'flats',
     image: '/images/products/fl3.png',
     brand: 'Zara',
     name: 'Elegant Bow Flats',
@@ -1060,6 +1336,8 @@ const flats: Product[] = [
     oldPrice: '$48.00',
   },
   {
+    id: 'flats-4',
+    category: 'flats',
     image: '/images/products/fl4.png',
     brand: 'Clarks',
     name: 'Comfort Casual Flats',
@@ -1067,6 +1345,8 @@ const flats: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'flats-5',
+    category: 'flats',
     image: '/images/products/fl5.png',
     brand: 'Aldo',
     name: 'Minimalist Slip-On Flats',
@@ -1074,6 +1354,8 @@ const flats: Product[] = [
     oldPrice: '$52.00',
   },
   {
+    id: 'flats-6',
+    category: 'flats',
     image: '/images/products/fl6.png',
     brand: 'Mango',
     name: 'Suede Ballerina Flats',
@@ -1084,6 +1366,8 @@ const flats: Product[] = [
 
 const casualShoes: Product[] = [
   {
+    id: 'casualShoes-1',
+    category: 'casual shoes',
     image: '/images/products/cs1.png',
     brand: 'Nike',
     name: 'Classic Casual Sneakers',
@@ -1091,6 +1375,8 @@ const casualShoes: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'casualShoes-2',
+    category: 'casual shoes',
     image: '/images/products/cs2.png',
     brand: 'Adidas',
     name: 'Everyday Street Shoes',
@@ -1098,6 +1384,8 @@ const casualShoes: Product[] = [
     oldPrice: '$85.00',
   },
   {
+    id: 'casualShoes-3',
+    category: 'casual shoes',
     image: '/images/products/cs3.png',
     brand: 'Puma',
     name: 'Urban Lifestyle Sneakers',
@@ -1105,6 +1393,8 @@ const casualShoes: Product[] = [
     oldPrice: '$75.00',
   },
   {
+    id: 'casualShoes-4',
+    category: 'casual shoes',
     image: '/images/products/cs4.png',
     brand: 'Zara',
     name: 'Minimal Leather Shoes',
@@ -1112,6 +1402,8 @@ const casualShoes: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'casualShoes-5',
+    category: 'casual shoes',
     image: '/images/products/cs5.png',
     brand: 'Skechers',
     name: 'Comfort Walking Shoes',
@@ -1119,6 +1411,8 @@ const casualShoes: Product[] = [
     oldPrice: '$90.00',
   },
   {
+    id: 'casualShoes-6',
+    category: 'casual shoes',
     image: '/images/products/cs6.png',
     brand: 'Reebok',
     name: 'Retro Casual Sneakers',
@@ -1129,6 +1423,8 @@ const casualShoes: Product[] = [
 
 const heels: Product[] = [
   {
+    id: 'heels-1',
+    category: 'heels',
     image: '/images/products/he1.png',
     brand: 'Aldo',
     name: 'Classic High Heel Pumps',
@@ -1136,6 +1432,8 @@ const heels: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'heels-2',
+    category: 'heels',
     image: '/images/products/he2.png',
     brand: 'Zara',
     name: 'Elegant Strappy Heels',
@@ -1143,6 +1441,8 @@ const heels: Product[] = [
     oldPrice: '$85.00',
   },
   {
+    id: 'heels-3',
+    category: 'heels',
     image: '/images/products/he3.png',
     brand: 'Mango',
     name: 'Pointed Toe Stilettos',
@@ -1150,6 +1450,8 @@ const heels: Product[] = [
     oldPrice: '$75.00',
   },
   {
+    id: 'heels-4',
+    category: 'heels',
     image: '/images/products/he4.png',
     brand: 'Guess',
     name: 'Luxury Block Heels',
@@ -1157,6 +1459,8 @@ const heels: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'heels-5',
+    category: 'heels',
     image: '/images/products/he5.png',
     brand: 'Steve Madden',
     name: 'Open Toe Party Heels',
@@ -1164,6 +1468,8 @@ const heels: Product[] = [
     oldPrice: '$90.00',
   },
   {
+    id: 'heels-6',
+    category: 'heels',
     image: '/images/products/he6.png',
     brand: 'H&M',
     name: 'Minimalist Kitten Heels',
@@ -1174,6 +1480,8 @@ const heels: Product[] = [
 
 const boots: Product[] = [
   {
+    id: 'boots-1',
+    category: 'boots',
     image: '/images/products/bo1.png',
     brand: 'Timberland',
     name: 'Classic Leather Ankle Boots',
@@ -1181,6 +1489,8 @@ const boots: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'boots-2',
+    category: 'boots',
     image: '/images/products/bo2.png',
     brand: 'Zara',
     name: 'Elegant Knee High Boots',
@@ -1188,6 +1498,8 @@ const boots: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'boots-3',
+    category: 'boots',
     image: '/images/products/bo3.png',
     brand: 'Dr. Martens',
     name: 'Classic Lace-Up Boots',
@@ -1195,6 +1507,8 @@ const boots: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'boots-4',
+    category: 'boots',
     image: '/images/products/bo4.png',
     brand: 'Clarks',
     name: 'Comfort Chelsea Boots',
@@ -1202,6 +1516,8 @@ const boots: Product[] = [
     oldPrice: '$105.00',
   },
   {
+    id: 'boots-5',
+    category: 'boots',
     image: '/images/products/bo5.png',
     brand: 'Aldo',
     name: 'Fashion Chunky Boots',
@@ -1209,6 +1525,8 @@ const boots: Product[] = [
     oldPrice: '$120.00',
   },
   {
+    id: 'boots-6',
+    category: 'boots',
     image: '/images/products/bo6.png',
     brand: 'H&M',
     name: 'Casual Suede Boots',
@@ -1219,6 +1537,8 @@ const boots: Product[] = [
 
 const sportsShoes: Product[] = [
   {
+    id: 'sportsShoes-1',
+    category: 'sports shoes & floaters',
     image: '/images/products/ss1.png',
     brand: 'Nike',
     name: 'Air Running Sneakers',
@@ -1226,6 +1546,8 @@ const sportsShoes: Product[] = [
     oldPrice: '$130.00',
   },
   {
+    id: 'sportsShoes-2',
+    category: 'sports shoes & floaters',
     image: '/images/products/ss2.png',
     brand: 'Adidas',
     name: 'Ultraboost Running Shoes',
@@ -1233,6 +1555,8 @@ const sportsShoes: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'sportsShoes-3',
+    category: 'sports shoes & floaters',
     image: '/images/products/ss3.png',
     brand: 'Puma',
     name: 'Training Sports Sneakers',
@@ -1240,6 +1564,8 @@ const sportsShoes: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'sportsShoes-4',
+    category: 'sports shoes & floaters',
     image: '/images/products/ss4.png',
     brand: 'Reebok',
     name: 'Classic Fitness Shoes',
@@ -1247,6 +1573,8 @@ const sportsShoes: Product[] = [
     oldPrice: '$90.00',
   },
   {
+    id: 'sportsShoes-5',
+    category: 'sports shoes & floaters',
     image: '/images/products/bo5.png',
     brand: 'Skechers',
     name: 'Lightweight Walking Shoes',
@@ -1254,6 +1582,8 @@ const sportsShoes: Product[] = [
     oldPrice: '$105.00',
   },
   {
+    id: 'sportsShoes-6',
+    category: 'sports shoes & floaters',
     image: '/images/products/bo6.png',
     brand: 'New Balance',
     name: 'Athletic Running Sneakers',
@@ -1264,6 +1594,8 @@ const sportsShoes: Product[] = [
 
 const bags: Product[] = [
   {
+    id: 'bags-1',
+    category: 'bags',
     image: '/images/products/ba1.png',
     brand: 'Guess',
     name: 'Classic Leather Handbag',
@@ -1271,6 +1603,8 @@ const bags: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'bags-2',
+    category: 'bags',
     image: '/images/products/ba2.png',
     brand: 'Zara',
     name: 'Elegant Shoulder Bag',
@@ -1278,6 +1612,8 @@ const bags: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'bags-3',
+    category: 'bags',
     image: '/images/products/ba3.png',
     brand: 'H&M',
     name: 'Casual Crossbody Bag',
@@ -1285,6 +1621,8 @@ const bags: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'bags-4',
+    category: 'bags',
     image: '/images/products/ba4.png',
     brand: 'Aldo',
     name: 'Mini Evening Bag',
@@ -1292,6 +1630,8 @@ const bags: Product[] = [
     oldPrice: '$65.00',
   },
   {
+    id: 'bags-5',
+    category: 'bags',
     image: '/images/products/ba5.png',
     brand: 'Michael Kors',
     name: 'Structured Tote Bag',
@@ -1299,6 +1639,8 @@ const bags: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'bags-6',
+    category: 'bags',
     image: '/images/products/ba6.png',
     brand: 'Mango',
     name: 'Minimalist Shopper Bag',
@@ -1309,6 +1651,8 @@ const bags: Product[] = [
 
 const belts: Product[] = [
   {
+    id: 'belts-1',
+    category: 'belts',
     image: '/images/products/be1.png',
     brand: "Levi's",
     name: 'Classic Leather Belt',
@@ -1316,6 +1660,8 @@ const belts: Product[] = [
     oldPrice: '$40.00',
   },
   {
+    id: 'belts-2',
+    category: 'belts',
     image: '/images/products/be2.png',
     brand: 'Guess',
     name: 'Designer Logo Belt',
@@ -1323,6 +1669,8 @@ const belts: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'belts-3',
+    category: 'belts',
     image: '/images/products/be3.png',
     brand: 'Zara',
     name: 'Minimalist Buckle Belt',
@@ -1330,6 +1678,8 @@ const belts: Product[] = [
     oldPrice: '$35.00',
   },
   {
+    id: 'belts-4',
+    category: 'belts',
     image: '/images/products/be4.png',
     brand: 'Tommy Hilfiger',
     name: 'Casual Reversible Belt',
@@ -1337,6 +1687,8 @@ const belts: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'belts-5',
+    category: 'belts',
     image: '/images/products/be5.png',
     brand: 'H&M',
     name: 'Classic Brown Belt',
@@ -1344,6 +1696,8 @@ const belts: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'belts-6',
+    category: 'belts',
     image: '/images/products/be6.png',
     brand: 'Calvin Klein',
     name: 'Premium Leather Belt',
@@ -1354,6 +1708,8 @@ const belts: Product[] = [
 
 const wallets: Product[] = [
   {
+    id: 'wallets-1',
+    category: 'wallets',
     image: '/images/products/wl1.png',
     brand: 'Guess',
     name: 'Classic Leather Wallet',
@@ -1361,6 +1717,8 @@ const wallets: Product[] = [
     oldPrice: '$45.00',
   },
   {
+    id: 'wallets-2',
+    category: 'wallets',
     image: '/images/products/wl2.png',
     brand: 'Tommy Hilfiger',
     name: 'Compact Bifold Wallet',
@@ -1368,6 +1726,8 @@ const wallets: Product[] = [
     oldPrice: '$50.00',
   },
   {
+    id: 'wallets-3',
+    category: 'wallets',
     image: '/images/products/wl3.png',
     brand: 'Calvin Klein',
     name: 'Minimalist Card Holder',
@@ -1375,6 +1735,8 @@ const wallets: Product[] = [
     oldPrice: '$40.00',
   },
   {
+    id: 'wallets-4',
+    category: 'wallets',
     image: '/images/products/wl4.png',
     brand: 'Fossil',
     name: 'Vintage Leather Wallet',
@@ -1382,6 +1744,8 @@ const wallets: Product[] = [
     oldPrice: '$55.00',
   },
   {
+    id: 'wallets-5',
+    category: 'wallets',
     image: '/images/products/wl5.png',
     brand: 'H&M',
     name: 'Slim Everyday Wallet',
@@ -1389,6 +1753,8 @@ const wallets: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'wallets-6',
+    category: 'wallets',
     image: '/images/products/wl6.png',
     brand: 'Puma',
     name: 'Sporty Zip Wallet',
@@ -1399,6 +1765,8 @@ const wallets: Product[] = [
 
 const watches: Product[] = [
   {
+    id: 'watches-1',
+    category: 'watches',
     image: '/images/products/wa1.png',
     brand: 'Casio',
     name: 'Classic Digital Watch',
@@ -1406,6 +1774,8 @@ const watches: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'watches-2',
+    category: 'watches',
     image: '/images/products/wa2.png',
     brand: 'Fossil',
     name: 'Minimalist Analog Watch',
@@ -1413,6 +1783,8 @@ const watches: Product[] = [
     oldPrice: '$115.00',
   },
   {
+    id: 'watches-3',
+    category: 'watches',
     image: '/images/products/wa3.png',
     brand: 'Timex',
     name: 'Classic Leather Watch',
@@ -1420,6 +1792,8 @@ const watches: Product[] = [
     oldPrice: '$80.00',
   },
   {
+    id: 'watches-4',
+    category: 'watches',
     image: '/images/products/wa4.png',
     brand: 'Guess',
     name: 'Elegant Gold Watch',
@@ -1427,6 +1801,8 @@ const watches: Product[] = [
     oldPrice: '$145.00',
   },
   {
+    id: 'watches-5',
+    category: 'watches',
     image: '/images/products/wa5.png',
     brand: 'Michael Kors',
     name: 'Luxury Silver Watch',
@@ -1434,6 +1810,8 @@ const watches: Product[] = [
     oldPrice: '$180.00',
   },
   {
+    id: 'watches-6',
+    category: 'watches',
     image: '/images/products/wa6.png',
     brand: 'Swatch',
     name: 'Modern Casual Watch',
@@ -1444,6 +1822,8 @@ const watches: Product[] = [
 
 const accessories: Product[] = [
   {
+    id: 'accessories-1',
+    category: 'accessories',
     image: '/images/products/ac1.png',
     brand: 'Ray-Ban',
     name: 'Classic Sunglasses',
@@ -1451,6 +1831,8 @@ const accessories: Product[] = [
     oldPrice: '$75.00',
   },
   {
+    id: 'accessories-2',
+    category: 'accessories',
     image: '/images/products/ac2.png',
     brand: 'Swarovski',
     name: 'Elegant Silver Necklace',
@@ -1458,6 +1840,8 @@ const accessories: Product[] = [
     oldPrice: '$100.00',
   },
   {
+    id: 'accessories-3',
+    category: 'accessories',
     image: '/images/products/ac3.png',
     brand: 'Pandora',
     name: 'Charm Bracelet',
@@ -1465,6 +1849,8 @@ const accessories: Product[] = [
     oldPrice: '$85.00',
   },
   {
+    id: 'accessories-4',
+    category: 'accessories',
     image: '/images/products/ac4.png',
     brand: 'Zara',
     name: 'Fashion Hair Accessories',
@@ -1472,6 +1858,8 @@ const accessories: Product[] = [
     oldPrice: '$28.00',
   },
   {
+    id: 'accessories-5',
+    category: 'accessories',
     image: '/images/products/ac5.png',
     brand: 'H&M',
     name: 'Classic Fashion Scarf',
@@ -1479,6 +1867,8 @@ const accessories: Product[] = [
     oldPrice: '$35.00',
   },
   {
+    id: 'accessories-6',
+    category: 'accessories',
     image: '/images/products/ac6.png',
     brand: 'Aldo',
     name: 'Elegant Jewelry Set',
@@ -1489,6 +1879,8 @@ const accessories: Product[] = [
 
 const winterWear: Product[] = [
   {
+    id: 'winterWear-1',
+    category: 'winter wear',
     image: '/images/products/ww1.png',
     brand: 'The North Face',
     name: 'Classic Winter Jacket',
@@ -1496,6 +1888,8 @@ const winterWear: Product[] = [
     oldPrice: '$180.00',
   },
   {
+    id: 'winterWear-2',
+    category: 'winter wear',
     image: '/images/products/ww2.png',
     brand: 'Columbia',
     name: 'Warm Puffer Jacket',
@@ -1503,6 +1897,8 @@ const winterWear: Product[] = [
     oldPrice: '$155.00',
   },
   {
+    id: 'winterWear-3',
+    category: 'winter wear',
     image: '/images/products/ww3.png',
     brand: 'Zara',
     name: 'Long Wool Coat',
@@ -1510,6 +1906,8 @@ const winterWear: Product[] = [
     oldPrice: '$135.00',
   },
   {
+    id: 'winterWear-4',
+    category: 'winter wear',
     image: '/images/products/ww4.png',
     brand: 'H&M',
     name: 'Knitted Winter Sweater',
@@ -1517,6 +1915,8 @@ const winterWear: Product[] = [
     oldPrice: '$70.00',
   },
   {
+    id: 'winterWear-5',
+    category: 'winter wear',
     image: '/images/products/ww5.png',
     brand: 'Uniqlo',
     name: 'Ultra Warm Down Vest',
@@ -1524,6 +1924,8 @@ const winterWear: Product[] = [
     oldPrice: '$110.00',
   },
   {
+    id: 'winterWear-6',
+    category: 'winter wear',
     image: '/images/products/ww6.png',
     brand: 'Nike',
     name: 'Winter Sports Hoodie',

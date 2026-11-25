@@ -59,7 +59,8 @@
       visibility 0.25s ease;
   }
 
-  &__image-container:hover &__add-button {
+  &__image-container:hover &__add-button,
+  &__image-container:focus-within &__add-button {
     transform: translate(-50%, 0);
 
     opacity: 1;
@@ -87,7 +88,8 @@
       visibility 0.25s ease;
   }
 
-  &__image-container:hover &__icons {
+  &__image-container:hover &__icons,
+  &__image-container:focus-within &__icons {
     opacity: 1;
     visibility: visible;
 

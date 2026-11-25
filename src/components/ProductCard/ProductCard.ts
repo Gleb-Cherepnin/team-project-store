@@ -1,6 +1,9 @@
 import styles from './ProductCard.module.scss';
+import { addCartItem } from '../../services/cart';
 
 export interface Product {
+  id: string;
+  category: string;
   image: string;
   brand: string;
   name: string;
@@ -60,6 +63,23 @@ export function createProductCard(product: Product): HTMLElement {
   addToCartButton.textContent = 'Add to Cart';
 
   addToCartButton.addEventListener('click', () => {
+    addCartItem({
+      id: product.id,
+      name: product.name,
+      image: image.src,
+      price: Number(product.price.replace('$', '')),
+      size: 'S',
+      quantity: 1,
+      brand: product.brand,
+      oldPrice: product.oldPrice,
+    });
+    addToCartButton.textContent = 'Added — add another';
+  });
+  addToCartButton.setAttribute('aria-live', 'polite');
+  addToCartButton.title = 'Add one item (default size S). Open details to choose a size.';
+
+  const openDetails = () => {
+    sessionStorage.setItem('selectedProductId', product.id);
     sessionStorage.setItem('selectedProductImage', product.image);
     sessionStorage.setItem('selectedProductBrand', product.brand);
     sessionStorage.setItem('selectedProductName', product.name);
@@ -67,16 +87,18 @@ export function createProductCard(product: Product): HTMLElement {
     sessionStorage.setItem('selectedProductOldPrice', product.oldPrice);
 
     window.location.hash = 'descriptions';
-  });
+  };
 
   // Icons
   const icons = document.createElement('div');
   icons.className = styles['product-card__icons'];
 
+  const detailsButton = createIconButton('eye', 'View product details');
+  detailsButton.addEventListener('click', openDetails);
   icons.append(
     createIconButton('heart', 'Add to wishlist'),
     createIconButton('compare', 'Compare product'),
-    createIconButton('eye', 'Quick view'),
+    detailsButton,
   );
 
   imageContainer.append(image, addToCartButton, icons);
@@ -90,6 +112,9 @@ export function createProductCard(product: Product): HTMLElement {
   const name = document.createElement('p');
   name.className = styles['product-card__name'];
   name.textContent = product.name;
+  const category = document.createElement('p');
+  category.className = styles['product-card__name'];
+  category.textContent = product.category;
 
   // Prices
   const prices = document.createElement('div');
@@ -105,7 +130,7 @@ export function createProductCard(product: Product): HTMLElement {
 
   prices.append(price, oldPrice);
 
-  card.append(imageContainer, brand, name, prices);
+  card.append(imageContainer, brand, name, category, prices);
 
   return card;
 }
