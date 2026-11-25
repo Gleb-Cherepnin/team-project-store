@@ -1,5 +1,11 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { addCartItem, getCart } from './cart';
+import {
+  addCartItem,
+  getCart,
+  setCartItemQuantity,
+  removeCartItem,
+  calculateCartTotals,
+} from './cart';
 
 beforeEach(() => {
   const storage = new Map<string, string>();
@@ -42,4 +48,51 @@ it('merges a matching legacy cart entry without an identifier', () => {
   addCartItem(item);
   expect(getCart()).toHaveLength(1);
   expect(getCart()[0]?.quantity).toBe(2);
+});
+
+it('updates quantity but rejects values below one and fractional values', () => {
+  addCartItem(item);
+  setCartItemQuantity(0, 3);
+  expect(getCart()[0]?.quantity).toBe(3);
+  for (const quantity of [0, -1, 1.5, NaN]) setCartItemQuantity(0, quantity);
+  expect(getCart()[0]?.quantity).toBe(3);
+  setCartItemQuantity(0, 1);
+  expect(getCart()[0]?.quantity).toBe(1);
+});
+
+it('removes only the chosen row and persists an empty cart', () => {
+  addCartItem(item);
+  addCartItem({ ...item, id: 'another' });
+  removeCartItem(0);
+  expect(getCart().map((entry) => entry.id)).toEqual(['another']);
+  removeCartItem(0);
+  expect(getCart()).toEqual([]);
+  expect(localStorage.getItem('krist-cart')).toBe('[]');
+});
+
+it('calculates totals with a single 10 percent discount, without accumulating it', () => {
+  const items = [{ ...item, price: 19.99, quantity: 3 }];
+  const discounted = calculateCartTotals(items, ' sale10 ');
+  expect(discounted).toEqual({ subtotal: 59.97, discount: 6, total: 53.97, discountApplied: true });
+  expect(calculateCartTotals(items, 'SALE10')).toEqual(discounted);
+  expect(calculateCartTotals(items, 'UNKNOWN')).toEqual({
+    subtotal: 59.97,
+    discount: 0,
+    total: 59.97,
+    discountApplied: false,
+  });
+  expect(calculateCartTotals([{ ...item, quantity: 2 }], 'SALE10').total).toBe(36);
+  expect(calculateCartTotals([], 'SALE10').total).toBe(0);
+});
+
+it('restores saved items and tolerates damaged storage', () => {
+  localStorage.setItem('krist-cart', JSON.stringify([{ ...item, quantity: 4 }]));
+  expect(getCart()[0]?.quantity).toBe(4);
+  localStorage.setItem('krist-cart', 'broken json');
+  expect(getCart()).toEqual([]);
+});
+
+it('does not add invalid quantities', () => {
+  for (const quantity of [0, -1, 1.5, NaN]) addCartItem({ ...item, quantity });
+  expect(getCart()).toEqual([]);
 });

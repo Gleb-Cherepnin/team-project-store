@@ -184,7 +184,7 @@ export function createDescriptionsPage(): HTMLElement {
   let count = 1;
 
   decreaseButton.addEventListener('click', () => {
-    if (count > 0) {
+    if (count > 1) {
       count -= 1;
       quantityValue.textContent = String(count);
     }
@@ -229,13 +229,14 @@ export function createDescriptionsPage(): HTMLElement {
     );
   }
   function updateCartButton(): void {
+    decreaseButton.disabled = count <= 1;
     const added = findCartItem() !== -1;
     addToCartButton.textContent = added ? 'Added to Cart' : 'Add to Cart';
     addToCartButton.classList.toggle(styles['descriptionsPage__cart-button--added'], added);
   }
   function syncQuantity(): void {
     const item = getCart()[findCartItem()];
-    count = item?.quantity ?? 0;
+    count = item?.quantity ?? 1;
     quantityValue.textContent = String(count);
     updateCartButton();
   }

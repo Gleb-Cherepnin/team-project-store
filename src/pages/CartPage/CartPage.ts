@@ -1,6 +1,11 @@
 import { createHeader } from '../../components/Header/Header';
 import { createFooter } from '../../components/Footer/Footer';
-import { getCart, removeCartItem, setCartItemQuantity } from '../../services/cart';
+import {
+  calculateCartTotals,
+  getCart,
+  removeCartItem,
+  setCartItemQuantity,
+} from '../../services/cart';
 import styles from './CartPage.module.scss';
 
 export function createCartPage(): HTMLElement {
@@ -10,7 +15,7 @@ export function createCartPage(): HTMLElement {
   const main = document.createElement('main');
   main.className = styles.main;
   const title = document.createElement('h1');
-  title.textContent = 'Checkout';
+  title.textContent = 'Shopping Cart';
   const layout = document.createElement('div');
   layout.className = styles.layout;
   const products = document.createElement('div');
@@ -49,7 +54,7 @@ export function createCartPage(): HTMLElement {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const code = input.value.trim().toUpperCase();
-    discountApplied = code === 'SALE10';
+    discountApplied = calculateCartTotals(getCart(), code).discountApplied;
     localStorage.setItem('krist.discount', discountApplied ? 'SALE10' : '');
     message.textContent = discountApplied
       ? 'SALE10 applied: 10% off products.'
@@ -155,14 +160,13 @@ export function createCartPage(): HTMLElement {
       table.append(body);
       products.append(table);
     }
-    const amount = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const totals = calculateCartTotals(items, discountApplied ? 'SALE10' : '');
     const shipping = items.length ? 5 : 0;
-    subtotal.textContent = money(amount);
+    subtotal.textContent = money(totals.subtotal);
     delivery.textContent = money(shipping);
-    const saving = discountApplied ? Math.round(amount * 10) / 100 : 0;
     discountRow.hidden = !discountApplied;
-    discount.textContent = `-${money(saving)}`;
-    total.textContent = money(amount - saving + shipping);
+    discount.textContent = money(-totals.discount);
+    total.textContent = money(totals.total + shipping);
   }
   page.addEventListener('cartchange', render);
   layout.append(products, summary);
