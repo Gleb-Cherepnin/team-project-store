@@ -184,7 +184,7 @@ export function createDescriptionsPage(): HTMLElement {
   let count = 1;
 
   decreaseButton.addEventListener('click', () => {
-    if (count > 0) {
+    if (count > 1) {
       count -= 1;
       quantityValue.textContent = String(count);
     }
@@ -203,15 +203,16 @@ export function createDescriptionsPage(): HTMLElement {
   addToCartButton.type = 'button';
   addToCartButton.textContent = 'Add to Cart';
   addToCartButton.addEventListener('click', () => {
-    if (count === 0 || findCartItem() !== -1) return;
+    if (count === 0) return;
     const value = Number((price.textContent || '').replace(/[^0-9.]/g, ''));
     if (!name.textContent || !productImage.getAttribute('src') || !Number.isFinite(value)) return;
     addCartItem({
+      id: sessionStorage.getItem('selectedProductId') || undefined,
       name: name.textContent,
       image: productImage.src,
       price: value,
       size: selectedSize,
-      quantity: count,
+      quantity: findCartItem() === -1 ? count : 1,
       brand: brand.textContent || '',
       oldPrice: oldPrice.textContent || '',
     });
@@ -228,13 +229,14 @@ export function createDescriptionsPage(): HTMLElement {
     );
   }
   function updateCartButton(): void {
+    decreaseButton.disabled = count <= 1;
     const added = findCartItem() !== -1;
     addToCartButton.textContent = added ? 'Added to Cart' : 'Add to Cart';
     addToCartButton.classList.toggle(styles['descriptionsPage__cart-button--added'], added);
   }
   function syncQuantity(): void {
     const item = getCart()[findCartItem()];
-    count = item?.quantity ?? 0;
+    count = item?.quantity ?? 1;
     quantityValue.textContent = String(count);
     updateCartButton();
   }

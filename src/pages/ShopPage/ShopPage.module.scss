@@ -390,3 +390,35 @@
     margin-left: 50px;
   }
 }
+
+.catalogFilters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 240px;
+  max-width: 100%;
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+  }
+  input,
+  select,
+  button {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font: inherit;
+    color: #131118;
+    background: #fff;
+  }
+  button {
+    background: #131118;
+    color: #fff;
+    cursor: pointer;
+  }
+}

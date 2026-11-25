@@ -1,4 +1,5 @@
 export interface CartItem {
+  id?: string;
   brand?: string;
   oldPrice?: string;
   name: string;
@@ -35,12 +36,25 @@ function save(items: CartItem[]): void {
     .forEach((element) => element.dispatchEvent(new Event('cartchange')));
 }
 export function addCartItem(item: CartItem): void {
+  if (
+    !Number.isSafeInteger(item.quantity) ||
+    item.quantity < 1 ||
+    !Number.isFinite(item.price) ||
+    item.price < 0
+  )
+    return;
   const items = getCart();
   const existing = items.find(
-    (entry) => entry.name === item.name && entry.image === item.image && entry.size === item.size,
+    (entry) =>
+      entry.size === item.size &&
+      (entry.id && item.id
+        ? entry.id === item.id
+        : entry.name === item.name && entry.image === item.image),
   );
-  if (existing) existing.quantity += item.quantity;
-  else items.push({ ...item });
+  if (existing) {
+    if (!Number.isSafeInteger(existing.quantity + item.quantity)) return;
+    existing.quantity += item.quantity;
+  } else items.push({ ...item });
   save(items);
 }
 export function removeCartItem(index: number): void {
@@ -49,7 +63,22 @@ export function removeCartItem(index: number): void {
 
 export function setCartItemQuantity(index: number, quantity: number): void {
   const items = getCart();
-  if (!items[index] || !Number.isSafeInteger(quantity) || quantity < 0) return;
+  if (!items[index] || !Number.isSafeInteger(quantity) || quantity < 1) return;
   items[index].quantity = quantity;
-  save(items.filter((item) => item.quantity > 0));
+  save(items);
+}
+
+export function calculateCartTotals(items: CartItem[], code = '') {
+  const subtotalCents = items.reduce(
+    (sum, item) => sum + Math.round(item.price * 100) * item.quantity,
+    0,
+  );
+  const discountApplied = code.trim().toUpperCase() === 'SALE10';
+  const discountCents = discountApplied ? Math.round(subtotalCents * 0.1) : 0;
+  return {
+    subtotal: subtotalCents / 100,
+    discount: discountCents / 100,
+    total: (subtotalCents - discountCents) / 100,
+    discountApplied,
+  };
 }
