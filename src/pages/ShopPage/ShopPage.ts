@@ -1,3 +1,4 @@
+import { filterProducts, type CatalogFilters } from '../../services/catalog';
 import { createHeader } from '../../components/Header/Header';
 import styles from './ShopPage.module.scss';
 import { createProductCard, type Product } from '../../components/ProductCard/ProductCard';
@@ -35,8 +36,6 @@ const categoryGroups = [
     ],
   },
 ];
-
-const otherCategories = ['Bags', 'Belts', 'Wallets', 'Watches', 'Accessories', 'Winter Wear'];
 
 const products: Product[] = [
   {
@@ -1979,425 +1978,103 @@ function formatCategory(category: string): string {
     .join(' ');
 }
 
-function navigateToCategory(category: string, group?: string): void {
-  const categoryPath = group
-    ? `${group.toLowerCase()}/${category.toLowerCase()}`
-    : category.toLowerCase();
-
-  window.location.hash = `shop/${encodeURIComponent(categoryPath)}`;
-}
-
 export function createShopPage(category: string): HTMLElement {
   const page = document.createElement('main');
   page.className = styles.shopPage;
-
-  const header = createHeader();
-
   const content = document.createElement('div');
   content.className = styles.shopPage__content;
-
-  const categoryParts = category.toLowerCase().split('/');
-  const selectedCategory = categoryParts[categoryParts.length - 1];
-
-  let selectedGroup = categoryParts.length > 1 ? categoryParts[0] : '';
-
-  if (!selectedGroup) {
-    const matchingGroup = categoryGroups.find((group) =>
-      group.items.some((item) => item.toLowerCase() === selectedCategory),
-    );
-
-    if (matchingGroup) {
-      selectedGroup = matchingGroup.name.toLowerCase();
-    }
-  }
-
-  // Selected category title
   const title = document.createElement('h1');
   title.className = styles.shopPage__title;
-  title.textContent = `Shop ${formatCategory(selectedCategory)}`;
-
-  // Main layout
+  title.textContent = 'Shop';
   const layout = document.createElement('div');
   layout.className = styles.shopPage__layout;
-
-  // Sidebar
   const sidebar = document.createElement('aside');
-  sidebar.className = styles.shopPage__sidebar;
-
-  // Categories section
-  const categoriesSection = document.createElement('section');
-  categoriesSection.className = styles.shopPage__categories;
-
-  const categoriesHeader = document.createElement('div');
-  categoriesHeader.className = styles.shopPage__categoriesHeader;
-
-  const categoriesTitle = document.createElement('h2');
-  categoriesTitle.className = styles.shopPage__categoriesTitle;
-  categoriesTitle.textContent = 'Product Categories';
-
-  const collapseButton = document.createElement('button');
-  collapseButton.className = styles.shopPage__collapseButton;
-  collapseButton.type = 'button';
-  collapseButton.setAttribute('aria-label', 'Collapse categories');
-  collapseButton.setAttribute('aria-expanded', 'true');
-
-  const collapseArrow = document.createElement('span');
-  collapseArrow.className = styles.shopPage__collapseArrow;
-
-  collapseButton.append(collapseArrow);
-  categoriesHeader.append(categoriesTitle, collapseButton);
-
-  const categoriesList = document.createElement('div');
-  categoriesList.className = styles.shopPage__categoriesList;
-
-  function createCheckbox(
-    name: string,
-    isChecked: boolean,
-    onChange: () => void,
-  ): HTMLLabelElement {
+  sidebar.className = styles.catalogFilters;
+  sidebar.setAttribute('aria-label', 'Product filters');
+  const search = document.createElement('input');
+  search.type = 'search';
+  search.placeholder = 'Search by product name';
+  const categorySelect = document.createElement('select');
+  categorySelect.add(new Option('All categories', 'all'));
+  for (const key of Object.keys(productsByCategory)) {
+    categorySelect.add(new Option(formatCategory(key), key));
+  }
+  for (const group of categoryGroups) {
+    categorySelect.add(new Option(group.name, group.name.toLowerCase()));
+  }
+  const initialCategory = category.toLowerCase().split('/').pop() || 'all';
+  if ([...categorySelect.options].some((option) => option.value === initialCategory)) {
+    categorySelect.value = initialCategory;
+  }
+  const minimum = document.createElement('input');
+  const maximum = document.createElement('input');
+  for (const input of [minimum, maximum]) {
+    input.type = 'number';
+    input.min = '0';
+    input.step = 'any';
+    input.placeholder = 'No limit';
+  }
+  const sort = document.createElement('select');
+  sort.add(new Option('Original order', 'original'));
+  sort.add(new Option('Price: Low to High', 'asc'));
+  sort.add(new Option('Price: High to Low', 'desc'));
+  function field(text: string, control: HTMLElement): HTMLLabelElement {
     const label = document.createElement('label');
-    label.className = styles.shopPage__categoryLabel;
-
-    const checkbox = document.createElement('input');
-    checkbox.className = styles.shopPage__checkbox;
-    checkbox.type = 'checkbox';
-    checkbox.name = 'shop-category';
-    checkbox.checked = isChecked;
-
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        onChange();
-      }
-    });
-
-    const text = document.createElement('span');
-    text.className = styles.shopPage__categoryName;
-    text.textContent = name;
-
-    label.append(checkbox, text);
-
+    label.append(text, control);
     return label;
   }
-
-  categoryGroups.forEach((group) => {
-    const groupElement = document.createElement('div');
-    groupElement.className = styles.shopPage__group;
-
-    const groupRow = document.createElement('div');
-    groupRow.className = styles.shopPage__groupRow;
-
-    const normalizedGroup = group.name.toLowerCase();
-
-    const isGroupSelected = selectedGroup === normalizedGroup;
-
-    const groupCheckbox = createCheckbox(group.name, isGroupSelected, () => {
-      navigateToCategory(group.name);
-    });
-
-    const expandButton = document.createElement('button');
-    expandButton.className = styles.shopPage__expandButton;
-    expandButton.type = 'button';
-    expandButton.textContent = '+';
-    expandButton.setAttribute('aria-label', `Expand ${group.name}`);
-
-    const subcategories = document.createElement('div');
-    subcategories.className = styles.shopPage__subcategories;
-
-    const isGroupOpen =
-      selectedGroup === normalizedGroup ||
-      (!selectedGroup && group.items.some((item) => item.toLowerCase() === selectedCategory));
-
-    subcategories.hidden = !isGroupOpen;
-    expandButton.textContent = isGroupOpen ? '−' : '+';
-
-    expandButton.addEventListener('click', () => {
-      subcategories.hidden = !subcategories.hidden;
-      expandButton.textContent = subcategories.hidden ? '+' : '−';
-      expandButton.setAttribute(
-        'aria-label',
-        `${subcategories.hidden ? 'Expand' : 'Collapse'} ${group.name}`,
-      );
-    });
-
-    group.items.forEach((item) => {
-      const itemCheckbox = createCheckbox(
-        item,
-        selectedCategory === item.toLowerCase() && selectedGroup === normalizedGroup,
-        () => navigateToCategory(item, group.name),
-      );
-
-      subcategories.append(itemCheckbox);
-    });
-
-    groupRow.append(groupCheckbox, expandButton);
-    groupElement.append(groupRow, subcategories);
-    categoriesList.append(groupElement);
-  });
-
-  otherCategories.forEach((item) => {
-    const itemCheckbox = createCheckbox(
-      item,
-      !selectedGroup && selectedCategory === item.toLowerCase(),
-      () => navigateToCategory(item),
-    );
-
-    categoriesList.append(itemCheckbox);
-  });
-
-  collapseButton.addEventListener('click', () => {
-    const isCollapsed = categoriesList.classList.toggle(
-      styles['shopPage__categoriesList--collapsed'],
-    );
-
-    collapseArrow.classList.toggle(styles['shopPage__collapseArrow--closed'], isCollapsed);
-
-    collapseButton.setAttribute(
-      'aria-label',
-      isCollapsed ? 'Expand categories' : 'Collapse categories',
-    );
-
-    collapseButton.setAttribute('aria-expanded', String(!isCollapsed));
-  });
-
-  categoriesSection.append(categoriesHeader, categoriesList);
-
-  // Filter by Price
-  const priceFilter = document.createElement('section');
-  priceFilter.className = styles.shopPage__priceFilter;
-
-  const priceFilterHeader = document.createElement('div');
-  priceFilterHeader.className = styles.shopPage__priceFilterHeader;
-
-  const priceFilterTitle = document.createElement('h2');
-  priceFilterTitle.className = styles.shopPage__priceFilterTitle;
-  priceFilterTitle.textContent = 'Filter by Price';
-
-  const priceCollapseButton = document.createElement('button');
-  priceCollapseButton.className = styles.shopPage__collapseButton;
-  priceCollapseButton.type = 'button';
-  priceCollapseButton.setAttribute('aria-label', 'Collapse price filter');
-  priceCollapseButton.setAttribute('aria-expanded', 'true');
-
-  const priceCollapseArrow = document.createElement('span');
-  priceCollapseArrow.className = styles.shopPage__collapseArrow;
-
-  priceCollapseButton.append(priceCollapseArrow);
-  priceFilterHeader.append(priceFilterTitle, priceCollapseButton);
-
-  const priceFilterContent = document.createElement('div');
-  priceFilterContent.className = styles.shopPage__priceFilterContent;
-
-  const priceText = document.createElement('p');
-  priceText.className = styles.shopPage__priceText;
-
-  const priceSlider = document.createElement('div');
-  priceSlider.className = styles.shopPage__priceSlider;
-
-  const priceTrack = document.createElement('div');
-  priceTrack.className = styles.shopPage__priceTrack;
-
-  const currentProducts = [
-    ...(selectedCategory === 'all' ? allProducts : productsByCategory[selectedCategory] || []),
-  ];
-
-  const prices = currentProducts.map((product) => Number(product.price.replace('$', '')));
-
-  const categoryMinPrice = prices.length ? Math.min(...prices) : 0;
-  const categoryMaxPrice = prices.length ? Math.max(...prices) : 0;
-
-  let minPrice = categoryMinPrice;
-  let maxPrice = categoryMaxPrice;
-
-  const minRange = document.createElement('input');
-  minRange.className = styles.shopPage__range;
-  minRange.type = 'range';
-  minRange.min = String(categoryMinPrice);
-  minRange.max = String(categoryMaxPrice);
-  minRange.step = '1';
-  minRange.value = String(minPrice);
-  minRange.setAttribute('aria-label', 'Minimum price');
-
-  const maxRange = document.createElement('input');
-  maxRange.className = styles.shopPage__range;
-  maxRange.type = 'range';
-  maxRange.min = String(categoryMinPrice);
-  maxRange.max = String(categoryMaxPrice);
-  maxRange.step = '1';
-  maxRange.value = String(maxPrice);
-  maxRange.setAttribute('aria-label', 'Maximum price');
-
-  function updatePriceFilter(): void {
-    priceText.textContent = `Price: $${minPrice} - $${maxPrice}`;
-
-    const difference = categoryMaxPrice - categoryMinPrice;
-
-    const minPercent = difference ? ((minPrice - categoryMinPrice) / difference) * 100 : 0;
-
-    const maxPercent = difference ? ((maxPrice - categoryMinPrice) / difference) * 100 : 100;
-
-    priceTrack.style.background = `linear-gradient(
-    to right,
-    #d1d1d1 ${minPercent}%,
-    #131118 ${minPercent}%,
-    #131118 ${maxPercent}%,
-    #d1d1d1 ${maxPercent}%
-  )`;
-
-    renderProducts();
-  }
-
-  priceCollapseButton.addEventListener('click', () => {
-    const isCollapsed = priceFilterContent.classList.toggle(
-      styles['shopPage__priceFilterContent--collapsed'],
-    );
-
-    priceCollapseArrow.classList.toggle(styles['shopPage__collapseArrow--closed'], isCollapsed);
-
-    priceCollapseButton.setAttribute(
-      'aria-label',
-      isCollapsed ? 'Expand price filter' : 'Collapse price filter',
-    );
-
-    priceCollapseButton.setAttribute('aria-expanded', String(!isCollapsed));
-  });
-
-  priceFilter.append(priceFilterHeader, priceFilterContent);
-
-  // Shop products section
+  const reset = document.createElement('button');
+  reset.type = 'button';
+  reset.textContent = 'Reset filters';
+  sidebar.append(
+    field('Search', search),
+    field('Category', categorySelect),
+    field('Price from ($)', minimum),
+    field('Price to ($)', maximum),
+    field('Sort by', sort),
+    reset,
+  );
   const shopContent = document.createElement('section');
   shopContent.className = styles.shopPage__shopContent;
-
-  const resultsInfo = document.createElement('div');
-  resultsInfo.className = styles.shopPage__resultsInfo;
-
-  const filterIcon = document.createElement('img');
-  filterIcon.className = styles.shopPage__filterIcon;
-  filterIcon.src = '/images/auth/filter.png';
-  filterIcon.alt = 'Filter';
-
-  const resultsText = document.createElement('p');
-  resultsText.className = styles.shopPage__resultsText;
-  resultsText.textContent = 'Showing 1-15 of 15 results';
-
-  // Sorting
-  const shopToolbar = document.createElement('div');
-  shopToolbar.className = styles.shopPage__shopToolbar;
-
-  const sortContainer = document.createElement('div');
-  sortContainer.className = styles.shopPage__sortContainer;
-
-  const sortButton = document.createElement('button');
-  sortButton.className = styles.shopPage__sortButton;
-  sortButton.type = 'button';
-
-  const sortText = document.createElement('span');
-  sortText.textContent = 'Sort by latest';
-
-  const sortArrow = document.createElement('span');
-  sortArrow.className = styles.shopPage__sortArrow;
-
-  sortButton.append(sortText, sortArrow);
-
-  const sortOptions = document.createElement('div');
-  sortOptions.className = styles.shopPage__sortOptions;
-  sortOptions.hidden = true;
-
-  const sortTypes = ['Price: Low to High', 'Price: High to Low'];
-
-  sortTypes.forEach((type) => {
-    const option = document.createElement('button');
-    option.className = styles.shopPage__sortOption;
-    option.type = 'button';
-    option.textContent = type;
-
-    option.addEventListener('click', () => {
-      sortText.textContent = type;
-      sortOptions.hidden = true;
-      sortArrow.classList.remove(styles['shopPage__sortArrow--open']);
-      sortButton.setAttribute('aria-expanded', 'false');
-
-      if (type === 'Price: Low to High') {
-        currentProducts.sort(
-          (a, b) => parseFloat(a.price.replace('$', '')) - parseFloat(b.price.replace('$', '')),
-        );
-      } else {
-        currentProducts.sort(
-          (a, b) => parseFloat(b.price.replace('$', '')) - parseFloat(a.price.replace('$', '')),
-        );
-      }
-
-      renderProducts();
-    });
-
-    sortOptions.append(option);
-  });
-
-  sortButton.setAttribute('aria-expanded', 'false');
-
-  sortButton.addEventListener('click', () => {
-    const isOpen = !sortOptions.hidden;
-
-    sortOptions.hidden = isOpen;
-    sortArrow.classList.toggle(styles['shopPage__sortArrow--open'], !isOpen);
-
-    sortButton.setAttribute('aria-expanded', String(!isOpen));
-  });
-
-  sortContainer.append(sortButton, sortOptions);
-
-  resultsInfo.append(filterIcon, resultsText);
-  shopToolbar.append(resultsInfo, sortContainer);
-  shopContent.append(shopToolbar);
-
-  const productsGrid = document.createElement('div');
-  productsGrid.className = styles.shopPage__productsGrid;
-
-  function renderProducts(): void {
-    productsGrid.innerHTML = '';
-
-    const filteredProducts = currentProducts.filter((product) => {
-      const price = Number(product.price.replace('$', ''));
-
-      return price >= minPrice && price <= maxPrice;
-    });
-
-    filteredProducts.forEach((product) => {
-      productsGrid.append(createProductCard(product));
-    });
-
-    resultsText.textContent = `Showing ${filteredProducts.length} results`;
+  const results = document.createElement('p');
+  results.setAttribute('role', 'status');
+  const grid = document.createElement('div');
+  grid.className = styles.shopPage__productsGrid;
+  const empty = document.createElement('p');
+  empty.textContent = 'No products found. Change your filters or reset them.';
+  function render(): void {
+    const group = categoryGroups.find((entry) => entry.name.toLowerCase() === categorySelect.value);
+    const filters: CatalogFilters = {
+      query: search.value,
+      categories:
+        categorySelect.value === 'all'
+          ? []
+          : group
+            ? group.items.map((item) => item.toLowerCase())
+            : [categorySelect.value],
+      min: minimum.value === '' ? undefined : Number(minimum.value),
+      max: maximum.value === '' ? undefined : Number(maximum.value),
+      sort: sort.value as CatalogFilters['sort'],
+    };
+    const products = filterProducts(allProducts, filters);
+    grid.replaceChildren(...products.map(createProductCard));
+    results.textContent = 'Showing ' + products.length + ' results';
+    empty.hidden = products.length > 0;
   }
-
-  minRange.addEventListener('input', () => {
-    minPrice = Math.min(Number(minRange.value), maxPrice);
-    minRange.value = String(minPrice);
-
-    updatePriceFilter();
+  for (const control of [search, minimum, maximum]) control.addEventListener('input', render);
+  for (const control of [categorySelect, sort]) control.addEventListener('change', render);
+  reset.addEventListener('click', () => {
+    search.value = '';
+    categorySelect.value = 'all';
+    minimum.value = '';
+    maximum.value = '';
+    sort.value = 'original';
+    render();
   });
-
-  maxRange.addEventListener('input', () => {
-    maxPrice = Math.max(Number(maxRange.value), minPrice);
-    maxRange.value = String(maxPrice);
-
-    updatePriceFilter();
-  });
-
-  priceSlider.append(priceTrack, minRange, maxRange);
-  priceFilterContent.append(priceText, priceSlider);
-
-  updatePriceFilter();
-
-  shopContent.append(productsGrid);
-
-  // Assemble page
-  sidebar.append(categoriesSection, priceFilter);
+  shopContent.append(results, empty, grid);
   layout.append(sidebar, shopContent);
-
-  shopContent.append(productsGrid);
-
   content.append(title, layout);
-
-  page.append(header, content, createStoreBenefits(), createFooter());
-
+  page.append(createHeader(), content, createStoreBenefits(), createFooter());
+  render();
   return page;
 }
