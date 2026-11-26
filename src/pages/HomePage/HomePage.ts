@@ -53,6 +53,10 @@ export function createHomePage(): HTMLElement {
   shopButton.type = 'button';
   shopButton.textContent = 'Shop Now';
 
+  shopButton.addEventListener('click', () => {
+    window.location.hash = 'shop/all';
+  });
+
   const arrow = document.createElement('span');
   arrow.className = styles['home-page__arrow'];
 
@@ -359,6 +363,10 @@ export function createHomePage(): HTMLElement {
   const dealsArrow = document.createElement('span');
   dealsArrow.className = styles['home-page__deals-arrow'];
 
+  viewAllButton.addEventListener('click', () => {
+    window.location.hash = 'shop/all';
+  });
+
   viewAllButton.append(buttonText, dealsArrow);
 
   dealsContent.append(dealsTitle, dealsDescription, timer, viewAllButton);
@@ -394,7 +402,7 @@ export function createHomePage(): HTMLElement {
       text: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout, The point of using Lorem Ipsum.',
       name: 'Leslie Alexander',
       role: 'Model',
-      image: '/images/reviews/.png',
+      image: '/images/reviews/avatar-1.png',
     },
     {
       text: 'I am impressed with the quality and style of the collection. The clothes fit perfectly, and the whole shopping experience was smooth and enjoyable.',
