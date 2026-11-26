@@ -1978,6 +1978,16 @@ function formatCategory(category: string): string {
     .join(' ');
 }
 
+function findCategory(query: string): string | undefined {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) return undefined;
+
+  return Object.keys(productsByCategory).find((category) => {
+    return formatCategory(category).toLowerCase() === normalizedQuery;
+  });
+}
+
 export function createShopPage(category: string): HTMLElement {
   const page = document.createElement('main');
   page.className = styles.shopPage;
@@ -1993,7 +2003,7 @@ export function createShopPage(category: string): HTMLElement {
   sidebar.setAttribute('aria-label', 'Product filters');
   const search = document.createElement('input');
   search.type = 'search';
-  search.placeholder = 'Search by product name';
+  search.placeholder = 'Search products or categories';
   const categorySelect = document.createElement('select');
   categorySelect.add(new Option('All categories', 'all'));
   for (const key of Object.keys(productsByCategory)) {
@@ -2002,7 +2012,7 @@ export function createShopPage(category: string): HTMLElement {
   for (const group of categoryGroups) {
     categorySelect.add(new Option(group.name, group.name.toLowerCase()));
   }
-  const initialCategory = category.toLowerCase().split('/').pop() || 'all';
+  const initialCategory = decodeURIComponent(category.toLowerCase().split('/').pop() || 'all');
   if ([...categorySelect.options].some((option) => option.value === initialCategory)) {
     categorySelect.value = initialCategory;
   }
@@ -2036,16 +2046,23 @@ export function createShopPage(category: string): HTMLElement {
   );
   const shopContent = document.createElement('section');
   shopContent.className = styles.shopPage__shopContent;
+
   const results = document.createElement('p');
+  results.className = styles.shopPage__resultsInfo;
   results.setAttribute('role', 'status');
+
   const grid = document.createElement('div');
   grid.className = styles.shopPage__productsGrid;
+
   const empty = document.createElement('p');
+  empty.className = styles.shopPage__empty;
   empty.textContent = 'No products found. Change your filters or reset them.';
+
   function render(): void {
     const group = categoryGroups.find((entry) => entry.name.toLowerCase() === categorySelect.value);
+
     const filters: CatalogFilters = {
-      query: search.value,
+      query: '',
       categories:
         categorySelect.value === 'all'
           ? []
@@ -2056,11 +2073,44 @@ export function createShopPage(category: string): HTMLElement {
       max: maximum.value === '' ? undefined : Number(maximum.value),
       sort: sort.value as CatalogFilters['sort'],
     };
-    const products = filterProducts(allProducts, filters);
+
+    const filteredProducts = filterProducts(
+      allProducts,
+      search.value.trim() ? { ...filters, categories: [] } : filters,
+    );
+
+    const query = search.value.trim().toLowerCase();
+
+    const products = filteredProducts.filter((product) => {
+      if (!query) return true;
+
+      return (
+        product.name.toLowerCase().includes(query) || product.brand.toLowerCase().includes(query)
+      );
+    });
+
     grid.replaceChildren(...products.map(createProductCard));
-    results.textContent = 'Showing ' + products.length + ' results';
-    empty.hidden = products.length > 0;
+
+    results.hidden = products.length === 0;
+    empty.hidden = true;
+
+    if (products.length > 0) {
+      results.textContent = `Showing ${products.length} results`;
+    }
   }
+
+  search.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+
+    const foundCategory = findCategory(search.value);
+
+    if (foundCategory) {
+      categorySelect.value = foundCategory;
+      search.value = '';
+      render();
+    }
+  });
+
   for (const control of [search, minimum, maximum]) control.addEventListener('input', render);
   for (const control of [categorySelect, sort]) control.addEventListener('change', render);
   reset.addEventListener('click', () => {

@@ -142,9 +142,9 @@ export function createHeader(): HTMLElement {
       path: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM17 17l5 5',
     },
     {
-      name: 'wishlist',
-      alt: 'Wishlist',
-      path: 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z',
+      name: 'profile',
+      alt: 'Profile',
+      path: 'M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z',
     },
     {
       name: 'cart',
@@ -158,9 +158,43 @@ export function createHeader(): HTMLElement {
     button.className = styles.header__icon;
     button.type = 'button';
     button.setAttribute('aria-label', icon.alt);
-    if (icon.name === 'wishlist') {
+    if (icon.name === 'profile') {
       button.addEventListener('click', () => {
         window.location.hash = isAuthenticated() ? 'profile' : 'login';
+      });
+    }
+
+    let searchForm: HTMLFormElement | undefined;
+
+    if (icon.name === 'search') {
+      searchForm = document.createElement('form');
+      searchForm.className = styles.header__searchForm;
+      searchForm.hidden = true;
+
+      const searchInput = document.createElement('input');
+      searchInput.className = styles.header__searchInput;
+      searchInput.type = 'search';
+      searchInput.placeholder = 'Enter category';
+      searchInput.setAttribute('aria-label', 'Search category');
+
+      searchForm.append(searchInput);
+
+      button.addEventListener('click', () => {
+        searchForm!.hidden = !searchForm!.hidden;
+
+        if (!searchForm!.hidden) {
+          searchInput.focus();
+        }
+      });
+
+      searchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const category = searchInput.value.trim().toLowerCase();
+
+        if (!category) return;
+
+        window.location.hash = `shop/${encodeURIComponent(category)}`;
       });
     }
 
@@ -180,7 +214,14 @@ export function createHeader(): HTMLElement {
 
     svg.append(path);
     button.append(svg);
-    actions.append(icon.name === 'cart' ? createMiniCart(button) : button);
+    if (icon.name === 'search' && searchForm) {
+      const searchWrapper = document.createElement('div');
+      searchWrapper.className = styles.header__searchWrapper;
+      searchWrapper.append(button, searchForm);
+      actions.append(searchWrapper);
+    } else {
+      actions.append(icon.name === 'cart' ? createMiniCart(button) : button);
+    }
   });
 
   // Login
