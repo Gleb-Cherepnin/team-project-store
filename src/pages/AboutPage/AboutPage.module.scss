@@ -72,3 +72,66 @@
     margin-top: 0;
   }
 }
+
+.teamDescription {
+  margin-bottom: 32px;
+}
+
+.member {
+  font-family: 'Jost', sans-serif;
+  padding: 28px;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  background: #fff;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  }
+
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 16px 0 4px;
+  }
+}
+
+.role {
+  color: #777;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.contribution {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 18px;
+
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+}
+
+.contributionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+  margin: 0;
+
+  li {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: 4px;
+
+    &::marker {
+      color: #222;
+    }
+  }
+}
